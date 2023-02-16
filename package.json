@@ -1,5 +1,5 @@
 {
-  "name": "my-vue-app",
+  "name": "kika-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,8 +13,8 @@
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.5.0",
-    "sort-by": "^1.2.0"
+    "react-router-dom": "^6.8.1",
+    "sort-by": "^0.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

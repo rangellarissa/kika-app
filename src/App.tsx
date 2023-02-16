@@ -1,5 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { 
+  BrowserRouter as Router, Route, Routes 
+} from 'react-router-dom'
+
+import Navbar from './components/navbar/navbar'
+
+import Home from './pages/Home'
+import Shows from './pages/Shows'
+import Works from './pages/Works'
+import About from './pages/About'
+import News from './pages/News'
+
 import './App.css'
 
 function App() {
@@ -7,26 +18,23 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Kika App</h1>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shows" element={<Shows />} />
+          <Route path="/works" element={<Works />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/news" element={<News />} />
+        </Routes>
+
+      </Router>
+      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
