@@ -1,8 +1,13 @@
+import ShowsContainer from "../../components/showsContainer/ShowsContainer";
+
+
 const Shows = () => {
     return (
-      <div>
-        <h1>Exposições</h1>
-        <p>Here you can find information about my art exhibitions.</p>
+      <div className="shows">
+        <div className="shows__header">
+          <h1>Exposições</h1>
+        </div>
+        <ShowsContainer />
       </div>
     );
 };

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DotNavigation from "../dotsNavigation/DotNavigation";
 import './homeCarousel.css';
 
-interface ImageProps {
+export interface ImageProps {
     url: string;
 }
 
@@ -19,7 +19,15 @@ const HomeCarousel = () => {
 
     const handleDotClick = (index: number) => {
         setCurrentImage(index);
-      };
+    };
+
+    setTimeout(() => {
+        if(currentImage < images.length - 1 ){
+            setCurrentImage(currentImage + 1);
+        } else {
+            setCurrentImage(0);
+        }
+    }, 3000)
 
     return (
         <div id="carousel" className="homeCarousel">
