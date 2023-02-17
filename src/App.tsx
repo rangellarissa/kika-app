@@ -3,13 +3,12 @@ import {
   BrowserRouter as Router, Route, Routes 
 } from 'react-router-dom'
 
-import Navbar from './components/navbar/navbar'
-
-import Home from './pages/Home'
-import Shows from './pages/Shows'
-import Works from './pages/Works'
-import About from './pages/About'
-import News from './pages/News'
+import Navbar from './components/navbar/Navbar'
+import Home from './pages/Home/Home'
+import Shows from './pages/Shows/Shows'
+import Works from './pages/Works/Works'
+import About from './pages/About/About'
+import News from './pages/News/News'
 
 import './App.css'
 
