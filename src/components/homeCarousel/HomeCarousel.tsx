@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import DotNavigation from "../dotsNavigation/DotNavigation";
 import './homeCarousel.css';
 
 interface ImageProps {
@@ -16,13 +17,9 @@ const HomeCarousel = () => {
 
     const [currentImage, setCurrentImage] = useState(0);
 
-    const handlePrevClick = () => {
-        setCurrentImage(currentImage === 0 ? images.length - 1 : currentImage - 1);
-    }
-
-    const handleNextClick = () => {
-        setCurrentImage(currentImage === images.length - 1 ? 0 : currentImage + 1);
-    };
+    const handleDotClick = (index: number) => {
+        setCurrentImage(index);
+      };
 
     return (
         <div id="carousel" className="homeCarousel">
@@ -35,12 +32,7 @@ const HomeCarousel = () => {
                 />
             ))}
             <div className="homeCarousel__buttons">
-                <button className="homeCarousel__buttons--prev-button" onClick={handlePrevClick}>
-                    &lt;
-                </button>
-                <button className="homeCarousel__buttons--next-button" onClick={handleNextClick}>
-                    &gt;
-                </button>
+                <DotNavigation numDots={images.length} activeIndex={currentImage} onDotClick={handleDotClick} />
             </div>
         </div>
     );
