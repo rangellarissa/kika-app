@@ -1,14 +1,22 @@
 
 ul {
     list-style: none;
-    padding: 16px;
+    margin-left: 100px;
 }
 
 li {
-    display: inline-block;
-    margin-right: 10px;
+    display: inline-flex;
+    margin-right: 50px;
+    flex-direction: row;
 }
 
 .navbar {
-    background-color: aqua;
+    padding-top: 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

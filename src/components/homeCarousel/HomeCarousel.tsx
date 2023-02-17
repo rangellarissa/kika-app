@@ -24,28 +24,8 @@ const HomeCarousel = () => {
         setCurrentImage(currentImage === images.length - 1 ? 0 : currentImage + 1);
     };
 
-    useEffect(() => {
-        const handleResize = () => {
-            const navbarHeight = document.getElementById('navbar')!.offsetHeight;
-            const carousel = document.getElementById('carousel')!;
-            carousel.style.paddingTop = `${navbarHeight}px`;
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, [])
-
     return (
         <div id="carousel" className="homeCarousel">
-            <button className="homeCarousel__prev-button" onClick={handlePrevClick}>
-                &lt;
-            </button>
-            <button className="homeCarousel__next-button" onClick={handleNextClick}>
-                &gt;
-            </button>
             {images.map((image, index) => (
                 <img
                 key={index}
@@ -54,6 +34,14 @@ const HomeCarousel = () => {
                 style={{ display: index === currentImage ? 'block' : 'none' }}
                 />
             ))}
+            <div className="homeCarousel__buttons">
+                <button className="homeCarousel__buttons--prev-button" onClick={handlePrevClick}>
+                    &lt;
+                </button>
+                <button className="homeCarousel__buttons--next-button" onClick={handleNextClick}>
+                    &gt;
+                </button>
+            </div>
         </div>
     );
 }

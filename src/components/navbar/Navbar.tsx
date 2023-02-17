@@ -7,7 +7,10 @@ const Navbar = () => {
 
     return (
         <div id='navbar'>
+            <div className='logo'>
+            </div>
             <nav className='navbar'>
+                <h3>KIKA CARVALHO</h3>
                 <ul>
                     <li><Link to="/">Início</Link></li>
                     <li><Link to="/shows">Exposições </Link></li>
