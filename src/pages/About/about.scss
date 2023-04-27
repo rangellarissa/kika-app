@@ -1,0 +1,15 @@
+.aboutPage {
+    max-width: 800px;
+    margin: 0 100px;
+    &__content {
+        &--header {
+            margin-top: 100px;
+            p {
+                margin: 0;
+            }
+        }
+        &--text {
+            text-align: justify;
+        }
+    }
+}
