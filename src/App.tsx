@@ -10,7 +10,7 @@ import Works from './pages/Works/Works'
 import About from './pages/About/About'
 import News from './pages/News/News'
 
-import './App.css'
+import './App.scss'
 
 function App() {
   const [count, setCount] = useState(0)
