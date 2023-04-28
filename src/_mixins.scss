@@ -1,0 +1,283 @@
+@mixin font-size($sizeValue: $body-font-size, $line: $sizeValue * 1.5) {
+    font-size: rem($sizeValue);
+    line-height: em($line);
+  }
+  
+  @mixin text-center() {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @mixin truncate() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  @mixin visually-hidden() {
+    border: 0;
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: 0 -1px -1px 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+  }
+  
+  $breakpoints: (
+    'mobile-s': 320px,
+    'mobile': 375px,
+    'mobile-l': 560px,
+    'tablet': 768px,
+    'desktop-s': 960px,
+    'desktop': 1248px,
+    'desktop-wide': 1440px,
+    'desktop-ultrawide': 1818px,
+  );
+  
+  @mixin mq($width, $type: min) {
+    @if map_has_key($breakpoints, $width) {
+      $width: map_get($breakpoints, $width);
+  
+      @if $type==max {
+        $width: $width - 1px;
+      }
+  
+      @media only screen and (#{$type}-width: $width) {
+        @content;
+      }
+    } @else {
+      @media only screen and ($width) {
+        @content;
+      }
+    }
+  }
+  
+  @mixin mq-between($min-width, $max-width) {
+    $min-width: map_get($breakpoints, $min-width);
+    $max-width: map_get($breakpoints, $max-width);
+  
+    @media only screen and (min-width: $min-width) and (max-width: $max-width) {
+      @content;
+    }
+  }
+  
+  // To colorize icons
+  @mixin colorize-icon($color) {
+    svg {
+      color: $color;
+      fill: $color;
+    }
+  }
+  
+  @mixin colorize-ink($color) {
+    canvas {
+      color: $color;
+    }
+  }
+  
+  @mixin thin-content($left: $padding-default, $padding: $padding-default * 2) {
+    content: '';
+    width: calc(100% - #{$padding});
+    height: 0;
+    display: block;
+    background: transparent;
+    position: absolute;
+    left: $left;
+  }
+  
+  @mixin thin-border-before($color: $light-grey-color, $left: $padding-default, $padding: $padding-default * 2) {
+    &::before {
+      @include thin-content($left: $left, $padding: $padding);
+  
+      top: 0;
+      border-top: 1px solid $color;
+    }
+  }
+  
+  @mixin thin-border-after($color: $light-grey-color, $left: $padding-default, $padding: $padding-default * 2) {
+    &::after {
+      @include thin-content($left: $left, $padding: $padding);
+  
+      bottom: 0;
+      border-top: 1px solid $color;
+    }
+  }
+  
+  @mixin question-mark-button() {
+    background: none;
+    border-radius: 100%;
+    border: 1px solid $gray-color--lighten;
+    color: $gray-color--lighten;
+    font-size: rem(11);
+    height: 18px;
+    line-height: 7px;
+    padding: 5px;
+    text-align: center;
+    width: 18px;
+  }
+  
+  @mixin grid-left($width: 20%, $marginRight: 10%) {
+    justify-self: start;
+    width: $width;
+    margin-right: $marginRight;
+  }
+  
+  @mixin grid-right($width: 70%) {
+    justify-self: end;
+    width: $width;
+  }
+  
+  @mixin pageContainer() {
+    width: 100%;
+    max-width: $desktop-container;
+    margin: auto;
+    padding: 0 $padding-default-desktop;
+  }
+  
+  @mixin pageContainerFull() {
+    width: 100%;
+    max-width: $desktop-container-ultrawide;
+    margin: auto;
+    padding: 0 $padding-default-desktop;
+  }
+  
+  @mixin section-title() {
+    font-size: rem(18);
+    color: #414143;
+    line-height: 1;
+    font-weight: 400;
+  
+    @include mq('tablet') {
+      font-size: rem(20);
+      font-weight: 500;
+      letter-spacing: -1px;
+    }
+  }
+  
+  @mixin section-title-header-home {
+    display: grid;
+    grid-template: 1fr / 1fr 60px;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    padding: $padding-default $padding-default 10px;
+  
+    @include mq('tablet') {
+      padding: $padding-default 0 0 0;
+    }
+  }
+  
+  @mixin section-title-home {
+    color: $text-color--darken;
+    font-size: rem(16);
+    font-weight: 500;
+    line-height: rem(20);
+    width: calc(100% - 60px);
+    margin: 0;
+  
+    @include mq('tablet') {
+      padding: 0 0 16px;
+      font-size: rem(20);
+      line-height: rem(25);
+    }
+  }
+  
+  @mixin section-description-home {
+    color: $medium-grey-color;
+    font-size: rem(14);
+    line-height: rem(18);
+    display: block;
+    font-weight: 300;
+    padding: 0 $padding-default 0;
+  
+    @include mq('tablet') {
+      font-size: rem(18);
+      line-height: rem(16);
+      padding: 0 0 16px;
+      padding-bottom: 40px;
+    }
+  }
+  
+  @mixin btn-see-more-red {
+    width: 60px;
+    text-align: right;
+    display: block;
+    font-size: rem(14);
+    line-height: rem(15);
+    color: $primary-color;
+    text-decoration: unset;
+    @include remove-tap-highlight();
+  
+    &:hover {
+      color: $danger-color;
+    }
+  }
+  
+  @mixin pulse-fill($name, $from, $to) {
+    @keyframes #{$name} {
+      0% {
+        fill: $from;
+      }
+  
+      50% {
+        fill: $to;
+      }
+  
+      100% {
+        fill: $from;
+      }
+    }
+  }
+  
+  @mixin calc-height($width: 100vh, $nav_tab: 110px) {
+    height: calc(100vh - 110px);
+  }
+  
+  @mixin calc-min-height($width: 100vh, $nav_tab: 110px) {
+    min-height: calc(100vh - 110px);
+  }
+  
+  @mixin custom-scrollbar($width: 4px, $thumb_bg_color: $light-grey-color-300) {
+    &::-webkit-scrollbar-track {
+      border-radius: 50px;
+      background-color: transparent;
+    }
+  
+    &::-webkit-scrollbar {
+      width: $width;
+      background-color: transparent;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      border-radius: 50px;
+      background-color: $thumb_bg_color;
+    }
+  }
+  
+  @mixin remove-tap-highlight() {
+    cursor: default;
+  
+    @include mq('desktop-s') {
+      cursor: pointer;
+    }
+  }
+  
+  @mixin fullpage-absolute() {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+  }
+  
+  @mixin scrollParallax($ratio: 0.5) {
+    transform: translateY(calc(#{$ratio} * var(--scroll)));
+  }
+  
