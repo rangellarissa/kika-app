@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
 import './navbar.scss';
@@ -8,11 +8,12 @@ import { useState } from 'react';
 const Navbar = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
+    const navigateTo = useNavigate()
 
     return (
         <div id='navbar'>
             <nav className='navbar'>
-                <h3>KIKA CARVALHO</h3>
+                <span onClick={() => navigateTo("/")}>KIKA CARVALHO</span>
                 <ul className='navbar__desktop'>
                     <li><Link to="/">Início</Link></li>
                     <li><Link to="/shows">Exposições </Link></li>
@@ -29,7 +30,6 @@ const Navbar = () => {
                 {menuOpen && (
                     <div className="navbar__mobile--menu-list">
                         <ul>
-                            <li><Link to="/">Início</Link></li>
                             <li><Link to="/shows">Exposições </Link></li>
                             <li><Link to="/works">Trabalhos </Link></li>
                             <li><Link to="/about">Sobre </Link></li>
