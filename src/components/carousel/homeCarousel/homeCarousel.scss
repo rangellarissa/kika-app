@@ -1,0 +1,22 @@
+@import '../../../mixins.scss';
+
+$screen-height: calc(100vh - 60px);
+
+.homeCarousel {
+    padding-top: 0;   
+    
+    @include mq('desktop-s', max){
+        height: $screen-height;
+    }
+    
+    img {
+        height: 650px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+
+        @include mq('desktop-s', max){
+            height: 100%;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DotNavigation from "../dotsNavigation/DotNavigation";
-import './homeCarousel.css';
+import './homeCarousel.scss';
 
 export interface ImageProps {
     url: string;
