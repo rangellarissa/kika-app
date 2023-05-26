@@ -25,7 +25,7 @@ const About = () => {
                 <div className="aboutPage__content" key={index}>
                     <div className="aboutPage__content--header">
                         <h1>{item.name}</h1>
-                        <p>Vitória, ES, Brasil, 1992</p>
+                        <p>Vitória - ES, Brasil, 1992</p>
                         <p>Vive e trabalha no Rio de Janeiro, RJ, Brasil</p>                        
                     </div>
                     <div className="aboutPage__content--text">
