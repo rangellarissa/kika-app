@@ -2,11 +2,15 @@ import './about.scss'
 
 import { useEffect, useState } from "react";
 
-import {Data} from "../../services/postService";
+export type About = {
+    name: string;
+    description: string;
+    date: string;
+  };
 
 const About = () => {
 
-    const [data, setData] = useState<Data[]>([]);
+    const [data, setData] = useState<About>();
 
     useEffect(() => {
         async function fetchData() {
@@ -16,24 +20,25 @@ const About = () => {
         }
     
         fetchData();
-      }, []);
-    
-      console.log(data); 
+    }, []);
+
+    if(!data){
+    return null;
+    };
 
     return (
         <div className="aboutPage">
-            {data.map((item, index) => (
-                <div className="aboutPage__content" key={index}>
+                <div className="aboutPage__content" >
                     <div className="aboutPage__content--header">
-                        <h1>{item.name}</h1>
+                        <h1>{data.name}</h1>
                         <p>Vitória - ES, Brasil, 1992</p>
                         <p>Vive e trabalha no Rio de Janeiro, RJ, Brasil</p>                        
                     </div>
                     <div className="aboutPage__content--text">
-                        <p>{item.description}</p>
+                        <p>{data.description}</p>
+                        <p>{data.date}</p>
                     </div>
                 </div>
-            ))}
         </div>
     );
 };
