@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import {Data} from "../../services/postService";
-
 import './about.scss'
+
+import { useEffect, useState } from "react";
+
+import {Data} from "../../services/postService";
 
 const About = () => {
 
@@ -9,9 +10,9 @@ const About = () => {
 
     useEffect(() => {
         async function fetchData() {
-          const response = await fetch('https://kika-api.vercel.app/example.json');
+          const response = await fetch('https://kika-api.vercel.app/api/artista/1');
           const jsonData = await response.json();
-          setData(jsonData.data);
+          setData(jsonData);
         }
     
         fetchData();
