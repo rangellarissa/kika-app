@@ -2,15 +2,7 @@ import './shows.scss';
 
 import { useEffect, useState } from "react";
 
-export type Show = {
-  ano: string,
-  id: number,
-  imageURL?: string,
-  individual: boolean,
-  local: string,
-  texto: string,
-  titulo: string,
-}
+import { Show } from '../../types/types';
 
 const Shows = () => {
 

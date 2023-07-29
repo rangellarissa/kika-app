@@ -3,13 +3,7 @@ import './homeCarousel.scss';
 import { useEffect, useState } from "react";
 
 import DotNavigation from "../dotsNavigation/DotNavigation";
-
-export interface Image {
-    id: number;
-    imageURL: string;
-    legenda?: string;
-    conteudo?: string;
-};
+import { Image } from '../../../types/types';
 
 const HomeCarousel = () => {
 

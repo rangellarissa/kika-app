@@ -2,15 +2,11 @@ import './about.scss'
 
 import { useEffect, useState } from "react";
 
-export type About = {
-    name: string;
-    description: string;
-    date: string;
-  };
+import { Artist } from '../../types/types';
 
 const About = () => {
 
-    const [data, setData] = useState<About>();
+    const [data, setData] = useState<Artist>();
 
     useEffect(() => {
         async function fetchData() {
