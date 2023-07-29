@@ -1,7 +1,7 @@
 export type Show = {
     ano: string,
     id: number,
-    imagens?: Image[],
+    imagens?: string[],
     individual: boolean,
     local: string,
     texto: string,
@@ -29,5 +29,19 @@ export type Obra = {
     tecnica: string;
     disponivel: boolean;
     destaque: boolean;
-    imagem: Image;
+    imageURL: string;
+}
+
+export type Novidade = {
+    id: number;
+    titulo: string;
+    imagens: string[];
+    texto: string;
+}
+
+export type Newsletter = {
+    id: number;
+    titulo: string;
+    novidades: Novidade[];
+    links: string[];
 }

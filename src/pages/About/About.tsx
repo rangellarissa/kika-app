@@ -10,11 +10,11 @@ const About = () => {
 
     useEffect(() => {
         async function fetchData() {
-          const response = await fetch('https://kika-api.vercel.app/api/artista/1');
-          const jsonData = await response.json();
-          setData(jsonData);
+            const response = await fetch('https://kika-api.vercel.app/api/artista/1');
+            const jsonData = await response.json();
+            setData(jsonData);
         }
-    
+
         fetchData();
     }, []);
 

@@ -2,23 +2,15 @@ import "./works.scss";
 
 import { useEffect, useState } from "react";
 
-export type Show = {
-  ano: string,
-  id: number,
-  imageURL?: string,
-  individual: boolean,
-  local: string,
-  texto: string,
-  titulo: string,
-}
+import { Obra } from "../../types/types";
 
 const Works: React.FC = () => {
 
-  const [data, setData] = useState<Show[]>([]);
+  const [data, setData] = useState<Obra[]>([]);
 
   useEffect(() => {
       async function fetchData() {
-        const response = await fetch('https://kika-api.vercel.app/api/exposicao');
+        const response = await fetch('https://kika-api.vercel.app/api/obra');
         const jsonData = await response.json();
         setData(jsonData);
       }
@@ -35,16 +27,11 @@ const Works: React.FC = () => {
         <div className="works__header">
           <h1>Obras</h1>
         </div>
-        {data.map((item, index) => (
-                <div className="works__content" key={index}>
-                    <div className="works__content--header">
-                        <h1>{item.titulo}</h1>
-                    </div>
-                    <div className="works__content--text">
-                        <p>{item.texto}</p>
-                    </div>
-                </div>
-        ))}      
+        <div className="works__content">
+          {data.map((item, index) => (
+            <img src={item.imageURL} alt={item.titulo} key={index}/>
+          ))}      
+        </div>
       </div>
     );
 };
