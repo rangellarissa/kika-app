@@ -9,7 +9,7 @@ export type Show = {
 };
 
 export type Image = {
-    id: number;
+    id?: number;
     imageURL: string;
     legenda?: string;
     conteudo?: string;
@@ -29,7 +29,7 @@ export type Obra = {
     tecnica: string;
     disponivel: boolean;
     destaque: boolean;
-    imageURL: string;
+    imagem: Image;
 }
 
 export type Novidade = {
