@@ -30,6 +30,7 @@ export type Obra = {
     disponivel: boolean;
     destaque: boolean;
     imagem: Image;
+    dimensoes: string;
 }
 
 export type Novidade = {
