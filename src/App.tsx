@@ -1,16 +1,19 @@
-import { useState } from 'react'
-import { 
-  BrowserRouter as Router, Route, Routes 
+import './App.scss'
+
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes
 } from 'react-router-dom'
 
-import Navbar from './components/navbar/Navbar'
+import About from './pages/About/About'
 import Home from './pages/Home/Home'
+import Message from './pages/Message/Message'
+import Navbar from './components/navbar/Navbar'
+import News from './pages/News/News'
 import Shows from './pages/Shows/Shows'
 import Works from './pages/Works/Works'
-import About from './pages/About/About'
-import News from './pages/News/News'
-
-import './App.scss'
+import { useState } from 'react'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +28,7 @@ function App() {
           <Route path="/works" element={<Works />} />
           <Route path="/about" element={<About />} />
           <Route path="/news" element={<News />} />
+          <Route path="/message" element={<Message />} />
         </Routes>
 
       </Router>

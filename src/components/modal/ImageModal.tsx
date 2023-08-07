@@ -3,6 +3,7 @@ import './imageModal.scss';
 import { Backdrop, Box, Button, Fade, IconButton, Modal, Typography } from "@mui/material";
 
 import { Close } from "@mui/icons-material";
+import { useNavigate } from 'react-router-dom';
 
 type ImageModalProps = {
     titulo: string;
@@ -29,8 +30,10 @@ const style = {
 };
 
 const ImageModal = (props: ImageModalProps) => {
+    const navigate = useNavigate();
+
     function handleClick() {
-        console.log('falar com a galeria')
+        navigate('/message');
     }
     return (
         <div className="image-modal">
