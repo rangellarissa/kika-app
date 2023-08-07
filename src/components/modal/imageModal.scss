@@ -1,8 +1,11 @@
 .image-modal {
+    &__content {
+        display: flex;
+        flex-direction: row-reverse;
 
-    img {
-        height: 300px;
-        width: 200px
     }
+}
 
+.css-i4bv87-MuiSvgIcon-root {
+    color:white;
 }

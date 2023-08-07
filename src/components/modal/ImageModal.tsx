@@ -1,7 +1,8 @@
-import { Backdrop, Box, Button, Fade, IconButton, Modal, Typography } from "@mui/material";
+import './imageModal.scss';
 
-import DeleteIcon from '@mui/icons-material/Delete';
-import { useState } from "react";
+import { Backdrop, Box, Fade, IconButton, Modal, Typography } from "@mui/material";
+
+import { Close } from "@mui/icons-material";
 
 type ImageModalProps = {
     titulo: string;
@@ -22,7 +23,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '100vh',
     bgcolor: 'background.dark',
     border: 'none',
     p: 4,
@@ -41,19 +41,22 @@ const ImageModal = (props: ImageModalProps) => {
                 }}
             >
                 <Fade in={props.open}>
-                    <div>
-                        <IconButton aria-label="delete" onClick={props.onClose}>
-                            <DeleteIcon />
+                    <div className="image-modal__content">
+                        <IconButton 
+                            aria-label="delete" 
+                            onClick={props.onClose} 
+                            className="image-modal__content--button">
+                            <Close className="image-modal__content--button--icon"/>
                         </IconButton>
-                        <Box sx={style} className='image-modal__box'>                  
-                            <img src={props.imageURL} style={{height: '70vh', width: 'auto'}}/>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                `{props.titulo} + {props.ano}`
+                        <Box sx={style} className='image-modal__content--box'>                  
+                            <img src={props.imageURL} style={{height: '70vh', width: 'auto', maxWidth: '100vw'}}/>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                {props.titulo}, {props.ano}
                             </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
                                 {props.tecnica}
                             </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
                                 {props.dimensoes}
                             </Typography>
                         </Box>
