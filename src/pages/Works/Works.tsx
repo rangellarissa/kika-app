@@ -1,24 +1,45 @@
 import "./works.scss";
 
-import { Button, Grid } from "@mui/material";
-import { Image, Obra } from "../../types/types";
+import { Button, ImageList, ImageListItem, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+
+import ImageModal from "../../components/modal/ImageModal";
+import { Obra } from "../../types/types";
 
 const Works: React.FC = () => {
 
   const [obra, setObra] = useState<Obra[]>([]);
+  const [currentObra, setCurrentObra] = useState<Obra>();
   const [filteredData, setFilteredData] = useState<Obra[]>([]);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-      async function fetchData() {
-        const response = await fetch('https://kika-api.vercel.app/api/obra');
-        const jsonData = await response.json();
-        setObra(jsonData);
-      }
-  
-      fetchData();
+    async function fetchData() {
+      const response = await fetch('https://kika-api.vercel.app/api/obra');
+      const jsonData = await response.json();
+      setObra(jsonData);
+    }
+    fetchData();
   }, []);
+
+  function handleClick(index: number) {
+    const clickedObra = (isFilterApplied ? filteredData : obra)[index];
+    
+    async function fetchData() {
+      const response = await fetch(`https://kika-api.vercel.app/api/obra/${clickedObra.id}`);
+      const jsonData = await response.json();
+      setCurrentObra(jsonData)
+    }
+    
+    fetchData();
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+    setCurrentObra(undefined);
+  }
 
   function showAvailable() {
     const filteredObra = obra.filter((obra) => obra.disponivel === true);
@@ -34,7 +55,6 @@ const Works: React.FC = () => {
     return null;
   };
 
-  console.log(obra)
 
   return (
     <div className="works">
@@ -47,14 +67,30 @@ const Works: React.FC = () => {
         ) : (
           <Button size="small" variant="text" onClick={showAvailable}>disponíveis</Button>
         )}
-        <Grid container rowSpacing={1} columnSpacing={3}>
+        <ImageList variant="masonry" cols={3} gap={8}>
           {(isFilterApplied ? filteredData : obra).map((obra, index) => (
-            <Grid item xs={6}>
-              <img src={obra.imagem.imageURL} alt={obra.titulo} key={index} />
-            </Grid>
+            <ImageListItem key={index} onClick={() => handleClick(index)}>
+              <img 
+                src={`${obra.imagem.imageURL}?w=164&h=164&fit=crop&auto=format`}
+                srcSet={`${obra.imagem.imageURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                loading="lazy"
+              />
+            </ImageListItem>
           ))}
-        </Grid>
-      </div>      
+        </ImageList>
+      </div>
+      {currentObra &&
+        <ImageModal
+          titulo={currentObra.titulo}
+          ano={currentObra.ano}
+          tecnica={currentObra.tecnica}
+          disponivel={currentObra.disponivel}
+          dimensoes={currentObra.dimensoes}
+          imageURL={currentObra.imagem.imageURL}
+          open={open}
+          onClose={handleClose}
+        />
+      }
     </div>
   );
 };
