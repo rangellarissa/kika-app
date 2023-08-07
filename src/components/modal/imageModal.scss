@@ -2,7 +2,19 @@
     &__content {
         display: flex;
         flex-direction: row-reverse;
-
+        &--available {
+            position: relative;
+            top: 80vh;
+            right: 10vh;
+            display: flex;
+            align-items: flex-end;
+            flex-direction: column;
+            
+            .css-1knaqv7-MuiButtonBase-root-MuiButton-root {
+                color:black;
+                text-decoration: underline;
+            }
+        }
     }
 }
 

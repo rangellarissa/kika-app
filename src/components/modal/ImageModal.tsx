@@ -1,6 +1,6 @@
 import './imageModal.scss';
 
-import { Backdrop, Box, Fade, IconButton, Modal, Typography } from "@mui/material";
+import { Backdrop, Box, Button, Fade, IconButton, Modal, Typography } from "@mui/material";
 
 import { Close } from "@mui/icons-material";
 
@@ -29,7 +29,9 @@ const style = {
 };
 
 const ImageModal = (props: ImageModalProps) => {
-
+    function handleClick() {
+        console.log('falar com a galeria')
+    }
     return (
         <div className="image-modal">
             <Modal 
@@ -48,18 +50,32 @@ const ImageModal = (props: ImageModalProps) => {
                             className="image-modal__content--button">
                             <Close className="image-modal__content--button--icon"/>
                         </IconButton>
-                        <Box sx={style} className='image-modal__content--box'>                  
-                            <img src={props.imageURL} style={{height: '70vh', width: 'auto', maxWidth: '100vw'}}/>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
-                                {props.titulo}, {props.ano}
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
-                                {props.tecnica}
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
-                                {props.dimensoes}
-                            </Typography>
-                        </Box>
+                            <Box sx={style} className='image-modal__content--box'>                  
+                                <img src={props.imageURL} style={{height: '70vh', width: 'auto', maxWidth: '100vw'}}/>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                    {props.titulo}, {props.ano}
+                                </Typography>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                    {props.tecnica}
+                                </Typography>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                    {props.dimensoes}
+                                </Typography>
+                            </Box>
+                        {props.disponivel && 
+                            <div className='image-modal__content--available'>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                    disponível
+                                </Typography>
+                                <Button 
+                                    size="small" 
+                                    variant="text" 
+                                    onClick={handleClick}
+                                >
+                                    falar com a galeria
+                                </Button>
+                            </div>
+                        }
                     </div>
                 </Fade>
 
