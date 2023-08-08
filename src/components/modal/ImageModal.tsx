@@ -5,7 +5,7 @@ import { Backdrop, Box, Button, Fade, IconButton, Modal, Typography } from "@mui
 import { Close } from "@mui/icons-material";
 import { useNavigate } from 'react-router-dom';
 
-type ImageModalProps = {
+export type ImageModalProps = {
     titulo: string;
     ano: string;
     tecnica: string;
@@ -33,8 +33,10 @@ const ImageModal = (props: ImageModalProps) => {
     const navigate = useNavigate();
 
     function handleClick() {
-        navigate('/message');
+        const currentImage = props.imageURL;
+        navigate('/message', { state: { currentImage } });
     }
+    
     return (
         <div className="image-modal">
             <Modal 
