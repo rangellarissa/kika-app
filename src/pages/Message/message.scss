@@ -5,7 +5,7 @@
     margin: 0 100px;
 
     @include mq('tablet', max) {
-        margin: 25px;
+        margin: 10px;
     }
 
     &__content {
@@ -14,23 +14,32 @@
 
             @include mq('tablet', max) {
                 margin-top: 30px;
+                margin-left: 10px;
             }
             p {
                 margin: 0;
             }
         }
         &--form {
-            text-align: justify;
+            width: 500px;
 
             @include mq('tablet', max) {
+                margin-top: 5px;
                 text-align: left;
                 line-height: 28px;
+                width: 90vw;
             }
 
             &--image {
                 display: flex;
                 justify-content: flex-start;
                 align-items: flex-start;
+
+                @include mq('tablet', max) {
+                    flex-direction: column;
+                    text-align: left;
+                    line-height: 28px;
+                }
 
                 img {
                     width: auto;

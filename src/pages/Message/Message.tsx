@@ -1,37 +1,53 @@
 import './message.scss';
 
-import { Box, Button, TextField } from "@mui/material";
+import { Alert, Box, Button, FormGroup, Input, Snackbar, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import { Obra } from '../../types/types';
+import emailjs from '@emailjs/browser';
 import { useLocation } from "react-router-dom";
 
 const Message = () => {
     const location = useLocation();
     const currentImage = location.state?.currentImage;
-    const [obra, setObra] = useState<Obra[]>();
-    console.log(currentImage);
-    const [nome, setName] = useState('');
+    const workName = location.state?.workName;
+
+    const [open, setOpen] = useState(false);
+    const [nome, setNome] = useState('');
+    const [telefone, setTelefone] = useState('');
     const [email, setEmail] = useState('');
     const [mensagem, setMensagem] = useState('');
-    
-    useEffect(() => {
-        async function fetchData() {
-            const response = await fetch('https://kika-api.vercel.app/api/obra');
-            const jsonData = await response.json();
-            setObra(jsonData);
+
+    const handleClose = () => setOpen(false);
+
+    function sendEmail(e){
+        e.preventDefault();
+
+        if (nome === '' || email === '' || mensagem === ''){
+            alert("Preencha todos os campos");
+            return;
         }
-        fetchData();
-
-    }, []);
-
-    function handleClick() {
-        console.log('enviar')
+        const templateParams = {
+            from_name: nome,
+            message: mensagem,
+            email: email,
+            image_url: currentImage,
+            subject: workName,
+            from_number: telefone,
+        }
+        
+        emailjs.send('service_ldf1096', 'template_xhftvkg', templateParams, 'TxaQDVB72z6zI1ORc')
+        .then((response) => {
+            console.log('email enviado', response.status, response.text, templateParams);
+            setNome('');
+            setEmail('');
+            setMensagem('');
+            setTelefone('');
+        }, (error) => {
+            console.log('Erro: ', error)
+        })
+        setOpen(true);
     }
-    
-    if(!obra){
-    return null;
-    };
 
     return (
         <div className="messagePage">
@@ -40,60 +56,85 @@ const Message = () => {
                     <h1>Fale com a galeria</h1>
                     <p>Deseja falar com a galeria?</p>
                 </div>
-                <div className='messagePage__content--form'>
-                    <Box
-                        component="form"
-                        sx={{
-                            '& .MuiTextField-root': { m: 1, width: '500px' },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                    >
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Email"
-                            variant="filled"
-                            placeholder="Digite seu email"
-                        />
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Nome Completo"
-                            variant="filled"
-                            placeholder="Digite seu nome completo"
-                        />
-                        <TextField
-                            id="filled-number"
-                            label="Telefone"
-                            type="number"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            variant="filled"
-                            helperText='número com DDD'
-                        />
-                        <div className="messagePage__content--form--image">
-                            <TextField
-                                id="filled-multiline-static"
-                                label="Mensagem"
-                                multiline
-                                rows={10}
-                                placeholder="Digite aqui sua mensagem"
-                                variant="filled"
-                            />
-                            <img src={currentImage}></img>
-                        </div>
-                    </Box>
-                </div>
-                <Button 
-                    size="small" 
-                    variant="text" 
-                    onClick={handleClick}
+                <Box
+                    component="form"
+                    sx={{
+                        '& .MuiTextField-root': { 
+                            m: 1, 
+                            width: '70vw' 
+                        },
+                    }}
+                    noValidate
+                    autoComplete="off"
+                    onSubmit={sendEmail}
+                    className="messagePage__content--form"
                 >
-                    Enviar
-                </Button>
+
+                    <TextField
+                        required
+                        id="filled-required"
+                        label="Email"
+                        variant="filled"
+                        placeholder="Digite seu email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                    <TextField
+                        required
+                        id="filled-required"
+                        label="Nome Completo"
+                        variant="filled"
+                        placeholder="Digite seu nome completo"
+                        onChange={(e) => setNome(e.target.value)}
+                        value={nome}
+                    />
+                    <TextField
+                        id="filled-number"
+                        label="Telefone"
+                        type="number"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        variant="filled"
+                        helperText='número com DDD'
+                        onChange={(e) => setTelefone(e.target.value)}
+                        value={telefone}
+                    />
+                    <div className="messagePage__content--form--image">
+                        <TextField
+                            id="filled-multiline-static"
+                            label="Mensagem"
+                            multiline
+                            rows={10}
+                            placeholder="Digite aqui sua mensagem"
+                            variant="filled"
+                            onChange={(e) => setMensagem(e.target.value)}
+                            value={mensagem}
+                            />
+                        <img src={currentImage}></img>
+                    </div>
+                    <Input 
+                        type="submit" 
+                        value="Enviar"
+                        style={{
+                            margin: '10px',
+                            color: 'white',
+                            backgroundColor: 'black',
+                            padding: '0px 10px',
+                        }} 
+                    />
+                </Box>
             </div>
+            <Snackbar 
+                open={open} 
+                autoHideDuration={2000} 
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+            >
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                    Email enviado com sucesso!
+                </Alert>
+            </Snackbar>
         </div>
     );
 };

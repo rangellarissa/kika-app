@@ -34,7 +34,8 @@ const ImageModal = (props: ImageModalProps) => {
 
     function handleClick() {
         const currentImage = props.imageURL;
-        navigate('/message', { state: { currentImage } });
+        const workName = props.titulo;
+        navigate('/message', { state: { currentImage, workName } });
     }
     
     return (
