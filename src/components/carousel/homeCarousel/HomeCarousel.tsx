@@ -14,7 +14,7 @@ const HomeCarousel = () => {
         async function fetchData() {
           const response = await fetch('https://kika-api.vercel.app/api/imagem');
           const jsonData = await response.json();
-          setData(jsonData);
+          setData(jsonData.filter((item: Image) => item.destaque === true));
         }
     
         fetchData();
@@ -41,10 +41,10 @@ const HomeCarousel = () => {
         <div id="carousel" className="homeCarousel">
             {data.map((data, index) => (
                 <img
-                key={index}
-                src={data.imageURL}
-                alt=""
-                style={{ display: index === currentImage ? 'block' : 'none' }}
+                    key={index}
+                    src={data.imageURL}
+                    alt=""
+                    style={{ display: index === currentImage ? 'block' : 'none' }}
                 />
             ))}
             <div className="homeCarousel__buttons">
