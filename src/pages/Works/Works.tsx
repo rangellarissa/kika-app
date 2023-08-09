@@ -80,7 +80,7 @@ const Works: React.FC = () => {
         ) : (
           <Button size="small" variant="text" onClick={showAvailable}>disponíveis</Button>
         )}
-        <ImageList variant="masonry" cols={ isMobile ? 2 : 4} gap={8}>
+        <ImageList variant="masonry" cols={ isMobile ? 2 : 3} gap={20}>
           {(isFilterApplied ? filteredData : obra).map((obra, index) => (
             <ImageListItem key={index} onClick={() => handleClick(index)}>
               <img 

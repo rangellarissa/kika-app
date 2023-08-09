@@ -13,6 +13,7 @@ export type Image = {
     imageURL: string;
     legenda?: string;
     conteudo?: string;
+    destaque: boolean;
 };
 
 export type Artist = {
@@ -28,7 +29,6 @@ export type Obra = {
     ano: string;
     tecnica: string;
     disponivel: boolean;
-    destaque: boolean;
     imagem: Image;
     dimensoes: string;
 }
