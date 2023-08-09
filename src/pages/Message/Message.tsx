@@ -20,7 +20,7 @@ const Message = () => {
 
     const handleClose = () => setOpen(false);
 
-    function sendEmail(e){
+    function sendEmail(e: any){
         e.preventDefault();
 
         if (nome === '' || email === '' || mensagem === ''){
