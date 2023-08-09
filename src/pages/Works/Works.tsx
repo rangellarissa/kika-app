@@ -13,6 +13,19 @@ const Works: React.FC = () => {
   const [filteredData, setFilteredData] = useState<Obra[]>([]);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
   const [open, setOpen] = useState(false);
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleWindowSizeChange() {
+      setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+      window.addEventListener('resize', handleWindowSizeChange);
+      return () => {
+          window.removeEventListener('resize', handleWindowSizeChange);
+      }
+  }, []);
+
+  const isMobile = width <= 768;
 
   useEffect(() => {
     async function fetchData() {
@@ -67,7 +80,7 @@ const Works: React.FC = () => {
         ) : (
           <Button size="small" variant="text" onClick={showAvailable}>disponíveis</Button>
         )}
-        <ImageList variant="masonry" cols={3} gap={8}>
+        <ImageList variant="masonry" cols={ isMobile ? 2 : 4} gap={8}>
           {(isFilterApplied ? filteredData : obra).map((obra, index) => (
             <ImageListItem key={index} onClick={() => handleClick(index)}>
               <img 

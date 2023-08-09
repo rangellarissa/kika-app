@@ -56,21 +56,23 @@ const ImageModal = (props: ImageModalProps) => {
                             className="image-modal__content--button">
                             <Close className="image-modal__content--button--icon"/>
                         </IconButton>
+                        <div>                        
                             <Box sx={style} className='image-modal__content--box'>                  
-                                <img src={props.imageURL} style={{height: '70vh', width: 'auto', maxWidth: '100vw'}}/>
-                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                <img src={props.imageURL}/>
+                                <Typography id="modal-modal-description" sx={{ mt: 1 }}>
                                     {props.titulo}, {props.ano}
                                 </Typography>
-                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                <Typography id="modal-modal-description" >
                                     {props.tecnica}
                                 </Typography>
-                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                <Typography id="modal-modal-description" >
                                     {props.dimensoes}
                                 </Typography>
                             </Box>
+                        </div>    
                         {props.disponivel && 
                             <div className='image-modal__content--available'>
-                                <Typography id="modal-modal-description" sx={{ mt: 2 }} color='white'>
+                                <Typography id="modal-modal-description" sx={{ fontSize: '14px'}}>
                                     disponível
                                 </Typography>
                                 <Button 
