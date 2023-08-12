@@ -1,7 +1,7 @@
 export type Show = {
     ano: string,
     id: number,
-    imagens?: string[],
+    imagem?: Image;
     individual: boolean,
     local: string,
     texto: string,

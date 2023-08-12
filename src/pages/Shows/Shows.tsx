@@ -16,7 +16,7 @@ const Shows = () => {
     }
 
     fetchData();
-  }, []);
+}, []);
 
   if(!data){
     return null;
@@ -27,17 +27,18 @@ const Shows = () => {
       <div className="shows__header">
         <h1>Exposições</h1>
       </div>
-      {data.map((item, index) => (
-              <div className="shows__content" key={index}>
-                  <div className="shows__content--header">
-                      <h1>{item.titulo}</h1>
-                  </div>
-                  <div className="shows__content--text">
-                      <p>{item.ano}</p>
-                      <p>{item.local}</p>
-                      <p>{item.texto}</p>
-                  </div>
-              </div>
+      {data.map((data, index) => (
+        <div className="shows__content" key={index}>
+            <div className="shows__content--header">
+                <h1>{data.titulo}</h1>
+            </div>
+            <div className="shows__content--text">
+                <p>{data.ano}</p>
+                <p>{data.local}</p>
+                <p>{data.texto}</p>
+                <img src={data.imagem?.imageURL}/>
+            </div>
+        </div>
       ))}
     </div>
   );

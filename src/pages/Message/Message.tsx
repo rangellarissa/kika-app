@@ -20,6 +20,20 @@ const Message = () => {
 
     const handleClose = () => setOpen(false);
 
+    function validateEmail(input: string) {
+        let error
+        let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      
+        if (input.match(validRegex) || input==='' ) {
+        
+          error = false;
+      
+        } else {      
+           error = true;
+        }
+        return error
+      }
+
     function sendEmail(e: any){
         e.preventDefault();
 
@@ -71,6 +85,7 @@ const Message = () => {
                 >
 
                     <TextField
+                        error={validateEmail(email)}
                         required
                         id="filled-required"
                         label="Email"
@@ -92,9 +107,6 @@ const Message = () => {
                         id="filled-number"
                         label="Telefone"
                         type="number"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
                         variant="filled"
                         helperText='número com DDD'
                         onChange={(e) => setTelefone(e.target.value)}
