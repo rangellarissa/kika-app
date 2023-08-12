@@ -12,9 +12,6 @@
         &--header {
             margin-top: 30px;
 
-            @include mq('tablet', max) {
-                margin-top: 30px;
-            }
             p {
                 margin: 0;
             }
