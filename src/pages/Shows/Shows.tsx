@@ -29,15 +29,17 @@ const Shows = () => {
       </div>
       {data.map((data, index) => (
         <div className="shows__content" key={index}>
-            <div className="shows__content--header">
-                <h1>{data.titulo}</h1>
-            </div>
-            <div className="shows__content--text">
-                <p>{data.ano}</p>
-                <p>{data.local}</p>
-                <p>{data.texto}</p>
-                <img src={data.imagem?.imageURL}/>
-            </div>
+          <div className="shows__content--header">
+            <h1>{data.titulo}</h1>
+          </div>
+          <div className="shows__content--text">
+            <p>{data.ano}</p>
+            <p>{data.local}</p>
+            <p>{data.texto}</p>
+          </div>
+          <div className="shows__content--image">
+            <img src={data.imagem?.imageURL}/>
+          </div>
         </div>
       ))}
     </div>

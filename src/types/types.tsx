@@ -36,7 +36,7 @@ export type Obra = {
 export type Novidade = {
     id: number;
     titulo: string;
-    imagens: string[];
+    imagem: Image;
     texto: string;
 }
 
