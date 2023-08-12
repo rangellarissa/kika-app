@@ -10,7 +10,7 @@
 
     &__content {
         &--header {
-            margin-top: 100px;
+            margin-top: 40px;
 
             @include mq('tablet', max) {
                 margin-top: 30px;

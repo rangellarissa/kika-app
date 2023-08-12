@@ -1,10 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
+import './navbar.scss'
 
-import './navbar.scss';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { FaBars } from 'react-icons/fa';
 import { useState } from 'react';
 
-  
 const Navbar = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -22,7 +22,7 @@ const Navbar = () => {
                     <li><Link to="/news">Novidades </Link></li>
                 </ul>
                 <ul className='navbar__mobile'>
-                    <li><button className="navbar__mobile--menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+                    <li><button className="navbar__mobile--menu-icon" onClick={() => setMenuOpen(!menuOpen)} aria-label="menu">
                             <FaBars />
                         </button>
                     </li>
@@ -30,10 +30,10 @@ const Navbar = () => {
                 {menuOpen && (
                     <div className="navbar__mobile--menu-list">
                         <ul>
-                            <li><Link to="/shows">Exposições </Link></li>
-                            <li><Link to="/works">Trabalhos </Link></li>
-                            <li><Link to="/about">Sobre </Link></li>
-                            <li><Link to="/news">Novidades </Link></li>
+                            <li><Link to="/shows">Exposições. </Link></li>
+                            <li><Link to="/works">Trabalhos. </Link></li>
+                            <li><Link to="/about">Sobre. </Link></li>
+                            <li><Link to="/news">Novidades. </Link></li>
 
                         </ul>
                     </div>
