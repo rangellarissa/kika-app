@@ -32,7 +32,7 @@ const Message = () => {
            error = true;
         }
         return error
-      }
+    }
 
     function sendEmail(e: any){
         e.preventDefault();
@@ -41,6 +41,13 @@ const Message = () => {
             alert("Preencha todos os campos");
             return;
         }
+
+        if (validateEmail(email)){
+            setEmail('');
+            alert("Preencha um email válido");
+            return;
+        };
+
         const templateParams = {
             from_name: nome,
             message: mensagem,
