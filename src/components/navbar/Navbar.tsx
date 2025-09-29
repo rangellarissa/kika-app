@@ -15,25 +15,24 @@ const Navbar = () => {
             <nav className='navbar'>
                 <span onClick={() => navigateTo("/")}>KIKA CARVALHO</span>
                 <ul className='navbar__desktop'>
-                    <li><Link to="/">Início</Link></li>
+                    <li><Link to="/about">Sobre </Link></li>
                     <li><Link to="/shows">Exposições </Link></li>
                     <li><Link to="/works">Trabalhos </Link></li>
-                    <li><Link to="/about">Sobre </Link></li>
                     <li><Link to="/news">Novidades </Link></li>
                 </ul>
                 <ul className='navbar__mobile'>
                     <li><button className="navbar__mobile--menu-icon" onClick={() => setMenuOpen(!menuOpen)} aria-label="menu">
-                            <FaBars />
-                        </button>
+                        <FaBars />
+                    </button>
                     </li>
                 </ul>
                 {menuOpen && (
                     <div className="navbar__mobile--menu-list">
                         <ul>
-                            <li><Link to="/shows">Exposições. </Link></li>
-                            <li><Link to="/works">Trabalhos. </Link></li>
-                            <li><Link to="/about">Sobre. </Link></li>
-                            <li><Link to="/news">Novidades. </Link></li>
+                            <li><Link to="/shows">Exposições </Link></li>
+                            <li><Link to="/works">Trabalhos </Link></li>
+                            <li><Link to="/about">Sobre </Link></li>
+                            <li><Link to="/news">Novidades </Link></li>
 
                         </ul>
                     </div>
@@ -42,9 +41,8 @@ const Navbar = () => {
         </div>
     );
 };
-  
+
 export default Navbar;
-  
-  
-  
-  
+
+
+
