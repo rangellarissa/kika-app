@@ -1,0 +1,42 @@
+.home {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  
+    &__menu {
+
+        span {
+            font-size: 40px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            margin-left: 40px;
+        }
+
+        ul {
+            list-style: none;
+            
+        }   
+
+        li {
+            display: flex;
+            margin-right: 50px;
+            flex-direction: row;
+            font-family: 'Catamaran', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    }
+
+    &__image {
+        padding-right: 100px;
+        img {
+            width: 400px;
+            height: auto;
+        }
+    }
+}
