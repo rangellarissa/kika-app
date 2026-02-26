@@ -44,5 +44,8 @@
             width: 400px;
             height: auto;
         }
+        @include mq('tablet', max) {
+          padding: 0;
+        }
     }
 }
