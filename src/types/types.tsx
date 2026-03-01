@@ -1,29 +1,30 @@
 export type Show = {
-    ano: string,
-    id: number,
+    ano: string;
+    id: number;
     imagem?: Image;
-    individual: boolean,
-    local: string,
-    texto: string,
-    titulo: string,
+    individual: boolean;
+    local: string;
+    texto: string;
+    titulo: string;
 };
 
 export type Residency = {
-    id: number,
-    ano: string,
+    id: number;
+    ano: string;
     imagens?: Image[];
-    local: string,
-    texto: string,
-    titulo: string,
-    instituicao: string,
+    local: string;
+    texto: string;
+    titulo: string;
+    instituicao: string;
 };
 
-export type Research = {
-    id: number,
-    data: string,
+export type ResearchProps = {
+    id: number;
+    data: string;
     imagem?: Image;
-    texto: string,
-    titulo: string,
+    texto: string;
+    titulo: string;
+    autora: string;
 };
 
 export type Image = {

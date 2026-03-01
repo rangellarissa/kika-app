@@ -1,16 +1,15 @@
+import { Image, ResearchProps } from '../../types/types';
 import './research.scss';
 
 import { useEffect, useState } from "react";
 
-import { Show } from '../../types/types';
-
 const Research = () => {
 
-  const [data, setData] = useState<Show[]>([]);
+  const [data, setData] = useState<ResearchProps[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('https://kika-api.vercel.app/api/exposicao');
+      const response = await fetch('https://kika-api.vercel.app/api/research');
       const jsonData = await response.json();
       setData(jsonData);
     }
@@ -31,10 +30,10 @@ const Research = () => {
         <div className="research__content" key={index}>
           <div className="research__content--header">
             <h1>{data.titulo}</h1>
+            <p>{data.autora}</p>
           </div>
           <div className="research__content--text">
-            <p>{data.ano}</p>
-            <p>{data.local}</p>
+            <p>{data.data}</p>
             <p>{data.texto}</p>
           </div>
           <div className="research__content--image">

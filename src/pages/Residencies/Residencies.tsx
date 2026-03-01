@@ -2,15 +2,15 @@ import './residencies.scss';
 
 import { useEffect, useState } from "react";
 
-import { Show } from '../../types/types';
+import { Residency } from '../../types/types';
 
 const Residencies = () => {
 
-  const [data, setData] = useState<Show[]>([]);
+  const [data, setData] = useState<Residency[]>([]);
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch('https://kika-api.vercel.app/api/exposicao');
+      const response = await fetch('https://kika-api.vercel.app/api/residencia');
       const jsonData = await response.json();
       setData(jsonData);
     }
@@ -38,7 +38,9 @@ const Residencies = () => {
             <p>{data.texto}</p>
           </div>
           <div className="residencies__content--image">
-            <img src={data.imagem?.imageURL}/>
+            {data.map ((data.imagens, index) => (
+              <img key={index} src={imagem.imageURL}/>
+            ))}
           </div>
         </div>
       ))}
