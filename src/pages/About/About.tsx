@@ -25,6 +25,12 @@ const About = () => {
     return (
         <div className="aboutPage">
                 <div className="aboutPage__content" >
+                    <button
+                        className="back-button"
+                        onClick={() => navigate("/")}
+                    >
+                        <span>←</span> Home
+                    </button>
                     <div className="aboutPage__content--header">
                         <h1>{data.name}</h1>
                         <p>Vitória - ES, Brasil, 1992</p>
