@@ -1,7 +1,7 @@
 import "./works.scss";
 
 import { Button, ImageList, ImageListItem, Modal, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import ImageModal from "../../components/modal/ImageModal";
 import { Obra } from "../../types/types";
@@ -35,13 +35,15 @@ const Works: React.FC = () => {
         fetchData();
     }, []);
 
-    function handleClick(index: number) {
-        const clickedObra = (obra)[index];
+    const sortedObras = useMemo(() => {
+        return [...obra].sort((a, b) => a.ordem - b.ordem);
+    }, [obra]);
 
+    function handleClick(id: number) {
         async function fetchData() {
-            const response = await fetch(`https://kika-api.vercel.app/api/obra/${clickedObra.id}`);
+            const response = await fetch(`https://kika-api.vercel.app/api/obra/${id}`);
             const jsonData = await response.json();
-            setCurrentObra(jsonData)
+            setCurrentObra(jsonData);
         }
 
         fetchData();
@@ -66,12 +68,13 @@ const Works: React.FC = () => {
             </div>
             <div className="works__content">
                 <ImageList variant="masonry" cols={isMobile ? 2 : 3} gap={20}>
-                    {(obra).map((obra, index) => (
-                        <ImageListItem key={index} onClick={() => handleClick(index)}>
+                    {sortedObras.map((obra) => (
+                        <ImageListItem key={obra.id} onClick={() => handleClick(obra.id)}>
                             <img
                                 src={`${obra.imagem.imageURL}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${obra.imagem.imageURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 loading="lazy"
+                                alt={obra.titulo}
                             />
                         </ImageListItem>
                     ))}
