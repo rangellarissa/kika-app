@@ -9,11 +9,11 @@ import {
 import About from './pages/About/About'
 import Home from './pages/Home/Home'
 import Message from './pages/Message/Message'
-import Navbar from './components/navbar/Navbar'
 import News from './pages/News/News'
 import Shows from './pages/Shows/Shows'
 import Works from './pages/Works/Works'
-import { useState } from 'react'
+import Residencies from './pages/Residencies/Residencies'
+import Research from './pages/Research/Research'
 
 function App() {
 
@@ -25,6 +25,8 @@ function App() {
                     <Route path="/shows" element={<Shows />} />
                     <Route path="/works" element={<Works />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/residencies" element={<Residencies />} />
+                    <Route path="/research" element={<Research />} />
                     <Route path="/news" element={<News />} />
                     <Route path="/message" element={<Message />} />
                 </Routes>

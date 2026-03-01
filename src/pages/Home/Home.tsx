@@ -26,8 +26,8 @@ const Home = () => {
                 <ul>
                     <li><Link to="/works">1. Trabalho / Work </Link></li>
                     <li><Link to="/shows">2. Exposições / Shows </Link></li>
-                    <li><Link to="/shows">3. Textos, pesquisas / texts, research </Link></li>
-                    <li><Link to="/shows">4. Residências / Residencies </Link></li>
+                    <li><Link to="/research">3. Textos, pesquisas / texts, research </Link></li>
+                    <li><Link to="/residencies">4. Residências / Residencies </Link></li>
                     <li><Link to="/about">5. Sobre / About </Link></li>
                     <li><Link to="/news">6. Novidades / News </Link></li>
                 </ul>

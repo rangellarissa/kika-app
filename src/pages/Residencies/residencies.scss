@@ -1,0 +1,39 @@
+@import '../../mixins.scss';
+
+.residencies {
+    max-width: 800px;
+    margin: 0 100px;
+
+    @include mq('tablet', max) {
+        margin: 25px;
+    }
+
+    &__content {
+        &--header {
+            margin-top: 30px;
+
+            p {
+                margin: 0;
+            }
+        }
+        &--text {
+            text-align: justify;
+
+            @include mq('tablet', max) {
+                text-align: left;
+                line-height: 28px;
+            }
+        }
+        &--image {
+            img {
+                max-width: 60vw;
+                margin: 10px 0;
+
+                @include mq('tablet', max) {
+                    width: 300px;
+                    height: auto;
+                }    
+            }
+        }
+    }
+}
