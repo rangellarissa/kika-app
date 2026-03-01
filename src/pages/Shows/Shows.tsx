@@ -45,10 +45,11 @@ const Shows = () => {
             <p>{show.local}</p>
             <p>{show.texto}</p>
           </div>
-
-          <div className="shows__content--image">
-            <img src={show.imagem?.imageURL} alt={show.titulo} />
-          </div>
+          {show.imagem && (
+            <div className="shows__content--image">
+              <img src={show.imagem.imageURL} alt={show.titulo} />
+            </div>
+          )}
         </div>
       ))}
     </div>
