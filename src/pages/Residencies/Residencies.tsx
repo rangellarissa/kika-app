@@ -27,19 +27,26 @@ const Residencies = () => {
       <div className="residencies__header">
         <h1>Residências</h1>
       </div>
-      {data.map((data, index) => (
+
+      {data.map((residency, index) => (
         <div className="residencies__content" key={index}>
           <div className="residencies__content--header">
-            <h1>{data.titulo}</h1>
+            <h2>{residency.titulo}</h2>
           </div>
+
           <div className="residencies__content--text">
-            <p>{data.ano}</p>
-            <p>{data.local}</p>
-            <p>{data.texto}</p>
+            <p>{residency.ano}</p>
+            <p>{residency.local}</p>
+            <p>{residency.texto}</p>
           </div>
+
           <div className="residencies__content--image">
-            {data.map ((data.imagens, index) => (
-              <img key={index} src={imagem.imageURL}/>
+            {residency.imagens?.map((imagem, imgIndex) => (
+              <img
+                key={imgIndex}
+                src={imagem.imageURL}
+                alt={residency.titulo}
+              />
             ))}
           </div>
         </div>
