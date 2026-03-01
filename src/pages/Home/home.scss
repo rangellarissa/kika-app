@@ -48,4 +48,15 @@
           padding: 0;
         }
     }
+
+    &__image-placeholder {
+        padding-right: 100px;
+        width: 400px;
+        height: 400px;
+        background-color: white;
+
+        @include mq('tablet', max) {
+          padding: 0;
+        }
+    }
 }
