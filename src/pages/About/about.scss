@@ -10,7 +10,7 @@
 
     &__content {
         &--header {
-            margin-top: 100px;
+            margin-top: 50px;
 
             @include mq('tablet', max) {
                 margin-top: 30px;
@@ -28,19 +28,4 @@
             }
         }
     }
-}
-
-.back-button {
-  background: none;
-  border: none;
-  padding: 16px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s ease;
-  margin-top: 20px;
-  margin-left: -100px;
-}
-
-.back-button:hover {
-  color: #55adf6;
 }

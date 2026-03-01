@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import ImageModal from "../../components/modal/ImageModal";
 import { Obra } from "../../types/types";
+import BackButton from "../../components/backButton/BackButton";
 
 const Works: React.FC = () => {
 
@@ -59,6 +60,7 @@ const Works: React.FC = () => {
 
     return (
         <div className="works">
+            <BackButton/>
             <div className="works__header">
                 <h1>Trabalhos</h1>
             </div>

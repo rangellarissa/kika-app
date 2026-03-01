@@ -1,14 +1,13 @@
 import './about.scss'
 
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { Artist } from '../../types/types';
+import BackButton from '../../components/backButton/BackButton';
 
 const About = () => {
 
     const [data, setData] = useState<Artist>();
-    const navigate = useNavigate();
     useEffect(() => {
         async function fetchData() {
             const response = await fetch('https://kika-api.vercel.app/api/artista/1');
@@ -26,12 +25,7 @@ const About = () => {
     return (
         <div className="aboutPage">
                 <div className="aboutPage__content" >
-                    <button
-                        className="back-button"
-                        onClick={() => navigate("/")}
-                    >
-                        <span>←</span>
-                    </button>
+                    <BackButton />
                     <div className="aboutPage__content--header">
                         <h1>{data.name}</h1>
                         <p>Vitória - ES, Brasil, 1992</p>

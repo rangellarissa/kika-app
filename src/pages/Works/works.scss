@@ -9,7 +9,7 @@
     }
 
     &__header {
-        margin-top: 100px;
+        margin-top: 50px;
 
         @include mq('tablet', max) {
             margin-top: 30px;

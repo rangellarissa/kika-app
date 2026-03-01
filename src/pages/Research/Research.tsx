@@ -1,3 +1,4 @@
+import BackButton from '../../components/backButton/BackButton';
 import { Image, ResearchProps } from '../../types/types';
 import './research.scss';
 
@@ -23,6 +24,7 @@ const Research = () => {
 
   return (
     <div className="research">
+      <BackButton />
       <div className="research__header">
         <h1>Textos, Pesquisas</h1>
       </div>

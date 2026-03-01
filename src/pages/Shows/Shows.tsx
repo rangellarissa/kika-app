@@ -3,6 +3,7 @@ import './shows.scss';
 import { useEffect, useState } from "react";
 
 import { Show } from '../../types/types';
+import BackButton from '../../components/backButton/BackButton';
 
 const Shows = () => {
 
@@ -24,6 +25,7 @@ const Shows = () => {
 
   return (
     <div className="shows">
+      <BackButton/>
       <div className="shows__header">
         <h1>Exposições</h1>
       </div>

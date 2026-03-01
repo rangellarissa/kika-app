@@ -3,6 +3,7 @@ import './residencies.scss';
 import { useEffect, useState } from "react";
 
 import { Residency } from '../../types/types';
+import BackButton from '../../components/backButton/BackButton';
 
 const Residencies = () => {
 
@@ -24,6 +25,7 @@ const Residencies = () => {
 
   return (
     <div className="residencies">
+      <BackButton />
       <div className="residencies__header">
         <h1>Residências</h1>
       </div>

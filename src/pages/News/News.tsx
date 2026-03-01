@@ -3,6 +3,7 @@ import './news.scss';
 import { useEffect, useState } from "react";
 
 import { Novidade } from '../../types/types';
+import BackButton from '../../components/backButton/BackButton';
 
 const News = () => {
 
@@ -24,6 +25,7 @@ const News = () => {
 
   return (
     <div className="news">
+      <BackButton />
       <div className="news__header">
         <h1>Novidades</h1>
       </div>
