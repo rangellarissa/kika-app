@@ -33,10 +33,8 @@ const Home = () => {
                 </ul>
             </div>
             <div className="home__image">
-                {data ? <img src={data.imageURL} alt="" />
-                 :
-                 <div className="home__image-placeholder" />
-                }
+                {!data && <div className="home__image-placeholder" />}
+                {data && <img src={data.imageURL} alt="" />}
             </div>
         </div>
     );

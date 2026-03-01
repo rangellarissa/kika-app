@@ -52,8 +52,8 @@
     &__image-placeholder {
         padding-right: 100px;
         width: 400px;
-        height: 400px;
-        background-color: white;
+        height: 100px;
+        background-color: red;
 
         @include mq('tablet', max) {
           padding: 0;
