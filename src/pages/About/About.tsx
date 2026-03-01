@@ -1,13 +1,14 @@
 import './about.scss'
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Artist } from '../../types/types';
 
 const About = () => {
 
     const [data, setData] = useState<Artist>();
-
+    const navigate = useNavigate();
     useEffect(() => {
         async function fetchData() {
             const response = await fetch('https://kika-api.vercel.app/api/artista/1');
