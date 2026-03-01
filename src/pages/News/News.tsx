@@ -19,9 +19,9 @@ const News = () => {
     fetchData();
 }, []);
 
-  if(!data){
-    return null;
-  };
+  if (data.length === 0) {
+    return <p>Em breve...</p>;
+  }
 
   return (
     <div className="news">
