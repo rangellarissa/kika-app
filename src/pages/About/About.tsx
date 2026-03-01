@@ -30,7 +30,7 @@ const About = () => {
                         className="back-button"
                         onClick={() => navigate("/")}
                     >
-                        <span>←</span> Home
+                        <span>←</span>
                     </button>
                     <div className="aboutPage__content--header">
                         <h1>{data.name}</h1>
