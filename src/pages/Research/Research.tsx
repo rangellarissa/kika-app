@@ -36,7 +36,7 @@ const Research = () => {
           </div>
           <div className="research__content--text">
             <p>{data.data}</p>
-            <p>{data.texto}</p>
+            <p>{data.texto.split("\n\n")}</p>
           </div>
           <div className="research__content--image">
             <img src={data.imagem?.imageURL}/>
