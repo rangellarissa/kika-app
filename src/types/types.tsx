@@ -11,7 +11,7 @@ export type Show = {
 export type Residency = {
     id: number,
     ano: string,
-    imagem?: Image;
+    imagens?: Image[];
     local: string,
     texto: string,
     titulo: string,
