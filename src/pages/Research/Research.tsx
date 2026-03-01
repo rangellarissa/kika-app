@@ -25,7 +25,7 @@ const Research = () => {
   return (
     <div className="research">
       <div className="research__header">
-        <h1>Residências</h1>
+        <h1>Textos, Pesquisas</h1>
       </div>
       {data.map((data, index) => (
         <div className="research__content" key={index}>
