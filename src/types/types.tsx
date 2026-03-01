@@ -8,6 +8,24 @@ export type Show = {
     titulo: string,
 };
 
+export type Residency = {
+    id: number,
+    ano: string,
+    imagem?: Image;
+    local: string,
+    texto: string,
+    titulo: string,
+    instituicao: string,
+};
+
+export type Research = {
+    id: number,
+    data: string,
+    imagem?: Image;
+    texto: string,
+    titulo: string,
+};
+
 export type Image = {
     id?: number;
     imageURL: string;

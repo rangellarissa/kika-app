@@ -24,7 +24,7 @@ const Home = () => {
             <div className="home__menu">
                 <span onClick={() => navigateTo("/")}>KIKA CARVALHO</span>
                 <ul>
-                    <li><Link to="/works">1. Trabalho / Work </Link></li>
+                    <li><Link to="/works">1. Trabalhos / Works </Link></li>
                     <li><Link to="/shows">2. Exposições / Shows </Link></li>
                     <li><Link to="/research">3. Textos, pesquisas / texts, research </Link></li>
                     <li><Link to="/residencies">4. Residências / Residencies </Link></li>

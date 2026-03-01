@@ -60,7 +60,7 @@ const Works: React.FC = () => {
     return (
         <div className="works">
             <div className="works__header">
-                <h1>Obras</h1>
+                <h1>Trabalhos</h1>
             </div>
             <div className="works__content">
                 <ImageList variant="masonry" cols={isMobile ? 2 : 3} gap={20}>
