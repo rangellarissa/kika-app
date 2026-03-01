@@ -1,6 +1,6 @@
 import './shows.scss';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 import { Show } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
@@ -17,30 +17,37 @@ const Shows = () => {
     }
 
     fetchData();
-}, []);
+  }, []);
 
-  if(!data){
-    return null;
-  };
+  const sortedShows = useMemo(() => {
+    return [...data].sort((a, b) => Number(b.ano) - Number(a.ano));
+  }, [data]);
+
+  if (data.length === 0) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="shows">
-      <BackButton/>
+      <BackButton />
       <div className="shows__header">
         <h1>Exposições</h1>
       </div>
-      {data.map((data, index) => (
-        <div className="shows__content" key={index}>
+
+      {sortedShows.map((show) => (
+        <div className="shows__content" key={show.id}>
           <div className="shows__content--header">
-            <h1>{data.titulo}</h1>
+            <h2>{show.titulo}</h2>
           </div>
+
           <div className="shows__content--text">
-            <p>{data.ano}</p>
-            <p>{data.local}</p>
-            <p>{data.texto}</p>
+            <p>{show.ano}</p>
+            <p>{show.local}</p>
+            <p>{show.texto}</p>
           </div>
+
           <div className="shows__content--image">
-            <img src={data.imagem?.imageURL}/>
+            <img src={show.imagem?.imageURL} alt={show.titulo} />
           </div>
         </div>
       ))}
