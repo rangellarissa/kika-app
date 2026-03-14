@@ -2,12 +2,24 @@
 .back-button {
   background: none;
   border: none;
-  padding: 16px 16px;
+  padding: 16px;
   cursor: pointer;
   font-size: 14px;
   transition: all 0.2s ease;
   margin-top: 20px;
   margin-left: -80px;
+
+  @include mq('tablet', max) {
+    margin-left: 0;
+    font-size: 22px;
+    padding: 16px 0;
+  }
+
+  @include mq('mobile-l', max) {
+    margin-left: 0;
+    font-size: 20px;
+    padding: 12px 0;
+  }
 }
 
 .back-button:hover {
