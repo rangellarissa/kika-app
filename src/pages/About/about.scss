@@ -22,6 +22,10 @@
         &--text {
             text-align: justify;
 
+            p {
+                margin-bottom: 16px;
+            }
+
             @include mq('tablet', max) {
                 text-align: left;
                 line-height: 28px;

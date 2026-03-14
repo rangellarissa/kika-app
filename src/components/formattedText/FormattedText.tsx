@@ -3,13 +3,8 @@ type FormattedTextProps = {
 };
 
 const parseInlineFormatting = (text: string) => {
-  // bold **text**
   let formatted = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-
-  // italic *text*
   formatted = formatted.replace(/\*(.*?)\*/g, "<em>$1</em>");
-
-  // links [text](url)
   formatted = formatted.replace(
     /\[(.*?)\]\((.*?)\)/g,
     '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
@@ -26,25 +21,13 @@ const FormattedText = ({ text }: FormattedTextProps) => {
   return (
     <>
       {paragraphs.map((paragraph, index) => {
-        const lines = paragraph.split("\n");
+        const html = parseInlineFormatting(paragraph).replace(/\n/g, "<br/>");
 
         return (
-          <p key={index}>
-            {lines.map((line, i) => (
-              <span
-                key={i}
-                dangerouslySetInnerHTML={{
-                  __html: parseInlineFormatting(line)
-                }}
-              />
-            )).reduce((prev, curr, i) => (
-              <>
-                {prev}
-                <br />
-                {curr}
-              </>
-            ))}
-          </p>
+          <p
+            key={index}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
         );
       })}
     </>
