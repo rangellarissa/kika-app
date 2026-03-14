@@ -26,10 +26,11 @@ const Home = () => {
                 <ul>
                     <li><Link to="/works">1. Trabalhos / Works </Link></li>
                     <li><Link to="/shows">2. Exposições / Shows </Link></li>
-                    <li><Link to="/research">3. Textos, pesquisas / texts, research </Link></li>
+                    <li><Link to="/research">3. Textos, pesquisas / Texts, research </Link></li>
                     <li><Link to="/residencies">4. Residências / Residencies </Link></li>
-                    <li><Link to="/about">5. Sobre / About </Link></li>
-                    <li><Link to="/news">6. Novidades / News </Link></li>
+                    <li><Link to="/special-projects">5. Projetos especiais / Special projects </Link></li>
+                    <li><Link to="/about">6. Sobre / About </Link></li>
+                    <li><Link to="/news">7. Novidades / News </Link></li>
                 </ul>
             </div>
             <div className="home__image">

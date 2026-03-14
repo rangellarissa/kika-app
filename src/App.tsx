@@ -14,6 +14,7 @@ import Shows from './pages/Shows/Shows'
 import Works from './pages/Works/Works'
 import Residencies from './pages/Residencies/Residencies'
 import Research from './pages/Research/Research'
+import Projects from './pages/Projects/projects'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/residencies" element={<Residencies />} />
                     <Route path="/research" element={<Research />} />
+                    <Route path="/special-projects" element={<Projects />} />
                     <Route path="/news" element={<News />} />
                     <Route path="/message" element={<Message />} />
                 </Routes>
