@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Artist } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
+import FormattedText from '../../components/formattedText/FormattedText';
 
 const About = () => {
 
@@ -32,9 +33,9 @@ const About = () => {
                         <p>Vive e trabalha no Rio de Janeiro, RJ, Brasil</p>                        
                     </div>
                     <div className="aboutPage__content--text">
-                        <p>{data.description}</p>
-                        <p>{data.date}</p>
-                    </div>
+                    <FormattedText text={data.description} />
+                    <p>{data.date}</p>
+                    </div>  
                 </div>
         </div>
     );
