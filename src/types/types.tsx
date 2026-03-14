@@ -66,3 +66,13 @@ export type Newsletter = {
     novidades: Novidade[];
     links: string[];
 }
+
+export type Projects = {
+    id: number;
+    titulo: string;
+    descricao: string;
+    ano?: string;
+    tecnica: string;
+    local?: string;
+    imagens: Image[];
+}

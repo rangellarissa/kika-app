@@ -64,9 +64,9 @@ const Projects: React.FC = () => {
         <div className="projects">
             <BackButton/>
             <div className="projects__header">
-                <h1>Trabalhos</h1>
+                <h1>Em Construção...</h1>
             </div>
-            <div className="projects__content">
+            {/* <div className="projects__content">
                 <ImageList variant="masonry" cols={isMobile ? 2 : 3} gap={20}>
                     {sortedObras.map((obra) => (
                         <ImageListItem key={obra.id} onClick={() => handleClick(obra.id)}>
@@ -91,7 +91,7 @@ const Projects: React.FC = () => {
                     open={open}
                     onClose={handleClose}
                 />
-            }
+            } */}
         </div>
     );
 };
