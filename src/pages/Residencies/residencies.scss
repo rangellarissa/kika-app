@@ -20,7 +20,6 @@
             text-align: justify;
 
             @include mq('tablet', max) {
-                text-align: left;
                 line-height: 28px;
             }
         }
