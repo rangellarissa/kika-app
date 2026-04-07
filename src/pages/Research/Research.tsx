@@ -1,4 +1,5 @@
 import BackButton from '../../components/backButton/BackButton';
+import FormattedText from '../../components/formattedText/FormattedText';
 import { Image, ResearchProps } from '../../types/types';
 import './research.scss';
 
@@ -36,9 +37,7 @@ const Research = () => {
           </div>
           <div className="research__content--text">
             <p>{data.data}</p>
-            {data.texto?.split("\n\n").map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
+            <FormattedText text={data.texto} />
           </div>
           <div className="research__content--image">
             <img src={data.imagem?.imageURL}/>

@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 
 import { Show } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
+import FormattedText from '../../components/formattedText/FormattedText';
 
 const Shows = () => {
 
@@ -43,7 +44,7 @@ const Shows = () => {
           <div className="shows__content--text">
             <p>{show.ano}</p>
             <p>{show.local}</p>
-            <p>{show.texto}</p>
+            <FormattedText text={show.texto} />
           </div>
           {show.imagem && (
             <div className="shows__content--image">

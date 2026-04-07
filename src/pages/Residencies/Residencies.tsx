@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Residency } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
+import FormattedText from '../../components/formattedText/FormattedText';
 
 const Residencies = () => {
 
@@ -39,9 +40,8 @@ const Residencies = () => {
           <div className="residencies__content--text">
             <p>{residency.ano}</p>
             <p>{residency.local}</p>
-            <p>{residency.texto}</p>
+            <FormattedText text={residency.texto} />
           </div>
-
           <div className="residencies__content--image">
             {residency.imagens?.map((imagem, imgIndex) => (
               <img
