@@ -1,27 +1,41 @@
 @import '../../mixins.scss';
 
 .news {
-    max-width: 800px;
+    max-width: 100vw;
     margin: 0 100px;
 
     @include mq('tablet', max) {
-        margin: 25px;
+        margin: 20px;
     }
 
-    &__content {
-        &--header {
-            margin-top: 50px;
+    &__header {
+        margin-top: 50px;
 
-            p {
-                margin: 0;
-            }
+        @include mq('tablet', max) {
+            margin-top: 30px;
         }
-        &--text {
-            text-align: justify;
+        p {
+            margin: 0;
+        }
+    }
+    &__content {
+        .MuiImageList-root {
+            width: 80vw;
+
+        }
+        .css-1knaqv7-MuiButtonBase-root-MuiButton-root {
+            color:black;
+            text-decoration: underline;
+        }
+
+        img {
+            cursor: pointer;
 
             @include mq('tablet', max) {
-                line-height: 28px;
+                max-width: 400px;
             }
         }
+        
     }
+
 }

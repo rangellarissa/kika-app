@@ -25,21 +25,10 @@ const News = () => {
 
   return (
     <div className="news">
-      <BackButton />
+      <BackButton/>
       <div className="news__header">
-        <h1>Novidades</h1>
+          <h1>Em Construção...</h1>
       </div>
-      {data.map((data, index) => (
-        <div className="news__content" key={index}>
-            <div className="news__content--header">
-                <h1>{data.titulo}</h1>
-            </div>
-            <div className="news__content--text">
-                <p>{data.texto}</p>
-                <img src={data.imagem?.imageURL}/>
-            </div>
-        </div>
-      ))}
     </div>
   );
 };
