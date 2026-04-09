@@ -41,11 +41,15 @@
     &__image {
         padding-right: 100px;
         img {
-            width: 400px;
+            width: 800px;
             height: auto;
         }
         @include mq('tablet', max) {
           padding: 0;
+          img {
+            width: 400px;
+            height: auto;
+          }
         }
     }
 
