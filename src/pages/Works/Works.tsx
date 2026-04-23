@@ -1,6 +1,6 @@
 import "./works.scss";
 
-import { Button, ImageList, ImageListItem, Modal, Typography } from "@mui/material";
+import { ImageList, ImageListItem } from "@mui/material";
 import { useEffect, useState, useMemo } from "react";
 
 import ImageModal from "../../components/modal/ImageModal";
@@ -12,16 +12,16 @@ const Works: React.FC = () => {
     const [obra, setObra] = useState<Obra[]>([]);
     const [currentObra, setCurrentObra] = useState<Obra>();
     const [open, setOpen] = useState(false);
+    const [loadedImages, setLoadedImages] = useState<number[]>([]);
     const [width, setWidth] = useState<number>(window.innerWidth);
 
     function handleWindowSizeChange() {
         setWidth(window.innerWidth);
     }
+
     useEffect(() => {
         window.addEventListener('resize', handleWindowSizeChange);
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
+        return () => window.removeEventListener('resize', handleWindowSizeChange);
     }, []);
 
     const isMobile = width <= 768;
@@ -31,6 +31,12 @@ const Works: React.FC = () => {
             const response = await fetch('https://kika-api.vercel.app/api/obra');
             const jsonData = await response.json();
             setObra(jsonData);
+
+            // 🔥 pré-carrega primeiras imagens
+            jsonData.slice(0, 6).forEach((item: Obra) => {
+                const img = new window.Image();
+                img.src = item.imagem.imageURL;
+            });
         }
         fetchData();
     }, []);
@@ -39,15 +45,13 @@ const Works: React.FC = () => {
         return [...obra].sort((a, b) => a.ordem - b.ordem);
     }, [obra]);
 
-    function handleClick(id: number) {
-        async function fetchData() {
-            const response = await fetch(`https://kika-api.vercel.app/api/obra/${id}`);
-            const jsonData = await response.json();
-            setCurrentObra(jsonData);
-        }
-
-        fetchData();
+    function handleClick(item: Obra) {
+        setCurrentObra(item); // evita fetch extra
         setOpen(true);
+
+        // pré-carrega imagem grande
+        const img = new window.Image();
+        img.src = item.imagem.imageURL;
     }
 
     function handleClose() {
@@ -55,31 +59,32 @@ const Works: React.FC = () => {
         setCurrentObra(undefined);
     }
 
-    if (!obra) {
-        return null;
-    };
-
-
     return (
         <div className="works">
             <BackButton/>
+
             <div className="works__header">
                 <h1>Trabalhos</h1>
             </div>
+
             <div className="works__content">
                 <ImageList variant="masonry" cols={isMobile ? 2 : 3} gap={20}>
-                    {sortedObras.map((obra) => (
-                        <ImageListItem key={obra.id} onClick={() => handleClick(obra.id)}>
+                    {sortedObras.map((item) => (
+                        <ImageListItem key={item.id} onClick={() => handleClick(item)}>
                             <img
-                                src={`${obra.imagem.imageURL}?w=164&h=164&fit=crop&auto=format`}
-                                srcSet={`${obra.imagem.imageURL}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                src={item.imagem.imageURL}
                                 loading="lazy"
-                                alt={obra.titulo}
+                                alt={item.titulo}
+                                onLoad={() =>
+                                    setLoadedImages(prev => [...prev, item.id])
+                                }
+                                className={loadedImages.includes(item.id) ? 'loaded' : ''}
                             />
                         </ImageListItem>
                     ))}
                 </ImageList>
             </div>
+
             {currentObra &&
                 <ImageModal
                     titulo={currentObra.titulo}
@@ -96,4 +101,4 @@ const Works: React.FC = () => {
     );
 };
 
-export default Works
+export default Works;
