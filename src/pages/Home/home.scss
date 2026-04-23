@@ -11,56 +11,80 @@
     flex-direction: column;
   }
   
-    &__menu {
+  &__menu {
 
-        span {
-            font-size: 40px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            margin-left: 40px;
-        }
-
-        ul {
-            list-style: none;
-            
-        }   
-
-        li {
-            display: flex;
-            margin-right: 50px;
-            flex-direction: row;
-            font-family: 'Catamaran', sans-serif;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
+    span {
+      font-size: 40px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      margin-left: 40px;
     }
 
-    &__image {
-        padding-right: 100px;
-        img {
-            width: 800px;
-            height: auto;
-        }
-        @include mq('tablet', max) {
-          padding: 0;
-          img {
-            width: 400px;
-            height: auto;
-          }
-        }
+    ul {
+      list-style: none;
     }
 
-    &__image-placeholder {
-        padding-right: 100px;
-        width: 300px;
-        height: 100px;
-        background-color: white;
-
-        @include mq('tablet', max) {
-          padding: 0;
-        }
+    li {
+      display: flex;
+      margin-right: 50px;
+      flex-direction: row;
+      font-family: 'Catamaran', sans-serif;
     }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  &__image {
+    padding-right: 100px;
+
+    img {
+      width: 800px;
+      height: auto;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    img.loaded {
+      opacity: 1;
+    }
+
+    @include mq('tablet', max) {
+      padding: 0;
+
+      img {
+        width: 400px;
+      }
+    }
+  }
+
+  &__image-placeholder {
+    width: 800px;
+    height: 500px;
+
+    background: linear-gradient(
+      90deg,
+      #f0f0f0 25%,
+      #e0e0e0 37%,
+      #f0f0f0 63%
+    );
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+
+    @include mq('tablet', max) {
+      width: 400px;
+      height: 250px;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }

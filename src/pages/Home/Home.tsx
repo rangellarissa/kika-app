@@ -7,13 +7,23 @@ import { Image } from '../../types/types';
 
 const Home = () => {
     const [data, setData] = useState<Image | null>(null);
+    const [loaded, setLoaded] = useState(false);
 
     const navigateTo = useNavigate()
+
     useEffect(() => {
         async function fetchData() {
             const response = await fetch('https://kika-api.vercel.app/api/imagem');
             const jsonData = await response.json();
-            setData(jsonData.find((item: Image) => item.destaque === true));
+            const destaque = jsonData.find((item: Image) => item.destaque === true);
+
+            setData(destaque);
+
+            // pré-carrega imagem
+            if (destaque?.imageURL) {
+                const img = new Image();
+                img.src = destaque.imageURL;
+            }
         }
 
         fetchData();
@@ -33,12 +43,23 @@ const Home = () => {
                     <li><Link to="/news">7. Novidades / News </Link></li>
                 </ul>
             </div>
+
             <div className="home__image">
                 {!data && <div className="home__image-placeholder" />}
-                {data && <img src={data.imageURL} alt="" />}
+
+                {data && (
+                    <img
+                        src={data.imageURL}
+                        alt=""
+                        loading="eager"
+                        fetchPriority="high"
+                        onLoad={() => setLoaded(true)}
+                        className={loaded ? 'loaded' : ''}
+                    />
+                )}
             </div>
         </div>
     );
 };
 
-export default Home
+export default Home;
