@@ -3,10 +3,10 @@ import './home.scss'
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
-import { Image } from '../../types/types';
+import { Image as ImageType } from '../../types/types';
 
 const Home = () => {
-    const [data, setData] = useState<Image | null>(null);
+    const [data, setData] = useState<ImageType | null>(null);
     const [loaded, setLoaded] = useState(false);
 
     const navigateTo = useNavigate()
@@ -19,7 +19,6 @@ const Home = () => {
 
             setData(destaque);
 
-            // pré-carrega imagem
             if (destaque?.imageURL) {
                 const img = new Image();
                 img.src = destaque.imageURL;
