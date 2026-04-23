@@ -48,14 +48,14 @@ const Home = () => {
                 {!data && <div className="home__image-placeholder" />}
 
                 {data && (
-                    <img
-                        src={data.imageURL}
-                        alt=""
-                        loading="eager"
-                        fetchPriority="high"
-                        onLoad={() => setLoaded(true)}
-                        className={loaded ? 'loaded' : ''}
-                    />
+                <img
+                    src={data.imageURL}
+                    alt=""
+                    loading="eager"
+                    fetchpriority="high"
+                    onLoad={() => setLoaded(true)}
+                    className={loaded ? 'loaded' : ''}
+                />
                 )}
             </div>
         </div>
