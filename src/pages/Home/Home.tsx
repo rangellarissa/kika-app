@@ -52,7 +52,6 @@ const Home = () => {
                     src={data.imageURL}
                     alt=""
                     loading="eager"
-                    fetchpriority="high"
                     onLoad={() => setLoaded(true)}
                     className={loaded ? 'loaded' : ''}
                 />
