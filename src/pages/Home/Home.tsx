@@ -15,7 +15,7 @@ const Home = () => {
         async function fetchData() {
             const response = await fetch('https://kika-api.vercel.app/api/imagem');
             const jsonData = await response.json();
-            const destaque = jsonData.find((item: Image) => item.destaque === true);
+            const destaque = jsonData.find((item: ImageType) => item.destaque === true);
 
             setData(destaque);
 
