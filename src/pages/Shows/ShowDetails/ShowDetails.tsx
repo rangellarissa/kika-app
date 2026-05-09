@@ -3,7 +3,8 @@ import './show-details.scss';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import BackButton from '../../components/backButton/BackButton';
+import BackButton from '../../../components/backButton/BackButton';
+import FormattedText from '../../../components/formattedText/FormattedText';
 import { Show } from '../../../types/types';
 
 const ShowDetails = () => {
