@@ -6,6 +6,7 @@ export type Show = {
     local: string;
     texto: string;
     titulo: string;
+    slug: string;
 };
 
 export type Residency = {
@@ -16,6 +17,7 @@ export type Residency = {
     texto: string;
     titulo: string;
     instituicao: string;
+    slug: string;
 };
 
 export type ResearchProps = {

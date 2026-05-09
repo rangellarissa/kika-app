@@ -1,6 +1,7 @@
 import './shows.scss';
 
 import { useEffect, useState, useMemo } from "react";
+import { Link } from 'react-router-dom';
 
 import { Show } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
@@ -35,26 +36,25 @@ const Shows = () => {
         <h1>Exposições</h1>
       </div>
 
-      {sortedShows.map((show) => (
-        <div className="shows__content" key={show.id}>
-          <div className="shows__content--header">
-            <h2>{show.titulo}</h2>
-          </div>
+      <div className="shows__grid">
+        {sortedShows.map((show) => (
+        <Link
+          key={show.id}
+          to={`/shows/${show.slug}`}
+          className="shows__card"
+        >
+            <img
+              src={show.imagem.imageURL}
+              alt={show.titulo}
+              loading="lazy"
+            />
 
-          <div className="shows__content--text">
-            <p>{show.ano}</p>
-            <p>{show.local}</p>
-            <FormattedText text={show.texto} />
-          </div>
-          {show.imagem && (
-            <div className="shows__content--image">
-              <img src={show.imagem.imageURL} alt={show.titulo} />
-            </div>
-          )}
-        </div>
-      ))}
+            <h2>{show.titulo}</h2>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Shows
+export default Shows;
