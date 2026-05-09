@@ -48,7 +48,6 @@ const ShowDetails = () => {
             </div>
           )}
         </div>
-      ))}
     </div>
   );
 };
