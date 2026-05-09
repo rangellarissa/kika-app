@@ -46,12 +46,13 @@ const Shows = () => {
               to={`/shows/${show.slug}`}
               className="shows__card"
             >
-              <img
-                src={show.imagens[0]}
-                alt={show.titulo}
-                loading="lazy"
-              />
-              
+              {show.imagens && 
+                <img
+                  src={show.imagens[0]}
+                  alt={show.titulo}
+                  loading="lazy"
+                />
+              }
               <h2>{show.titulo}</h2>
             </Link>
         ))}
