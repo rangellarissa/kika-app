@@ -30,13 +30,9 @@ const ShowDetails = () => {
     <div className="show-details">
       <BackButton />
       <div className="show-details__header">
-        <h1>Exposições</h1>
+        <h1>{show.titulo}</h1>
       </div>
         <div className="show-details__content" key={show.id}>
-          <div className="show-details__content--header">
-            <h2>{show.titulo}</h2>
-          </div>
-
           <div className="show-details__content--text">
             <p>{show.ano}</p>
             <p>{show.local}</p>
