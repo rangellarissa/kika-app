@@ -19,7 +19,7 @@ const BackButton = ({
   }
 
   return (
-    <button onClick={handleBack}>
+    <button className="back-button" onClick={handleBack}>
       ←
     </button>
   );
