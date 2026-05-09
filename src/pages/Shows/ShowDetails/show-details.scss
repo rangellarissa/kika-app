@@ -1,6 +1,7 @@
 @import '../../../mixins.scss';
 
 .show-details {
+    max-width: 800px;
     margin: 0 100px;
 
     @include mq('tablet', max) {
