@@ -1,3 +1,5 @@
+import './back-button.scss';
+
 import { useNavigate } from "react-router-dom";
 
 interface BackButtonProps {
