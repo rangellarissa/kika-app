@@ -38,21 +38,23 @@ const Shows = () => {
 
       <div className="shows__grid">
         {sortedShows.map((show) => (
-        <Link
-          key={show.id}
-          to={`/shows/${show.slug}`}
-          className="shows__card"
-        >
+          <>
           {show.imagem &&
-            <img
-              src={show.imagem.imageURL}
-              alt={show.titulo}
-              loading="lazy"
-            />
+            <Link
+              key={show.id}
+              to={`/shows/${show.slug}`}
+              className="shows__card"
+            >
+              <img
+                src={show.imagem.imageURL}
+                alt={show.titulo}
+                loading="lazy"
+              />
+              
+              <h2>{show.titulo}</h2>
+            </Link>
           }
-
-            <h2>{show.titulo}</h2>
-          </Link>
+          </>
         ))}
       </div>
     </div>
