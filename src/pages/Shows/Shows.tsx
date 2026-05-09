@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import { Show } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
-import FormattedText from '../../components/formattedText/FormattedText';
 
 const Shows = () => {
 
@@ -25,6 +24,10 @@ const Shows = () => {
     return [...data].sort((a, b) => Number(b.ano) - Number(a.ano));
   }, [data]);
 
+  const validShows = sortedShows.filter(
+    (show) => show.imagens?.length
+  );
+
   if (data.length === 0) {
     return <p>Loading...</p>;
   }
@@ -37,24 +40,20 @@ const Shows = () => {
       </div>
 
       <div className="shows__grid">
-        {sortedShows.map((show) => (
-          <>
-          {show.imagem &&
+        {validShows.map((show) => (
             <Link
               key={show.id}
               to={`/shows/${show.slug}`}
               className="shows__card"
             >
               <img
-                src={show.imagem.imageURL}
+                src={show.imagens[0]}
                 alt={show.titulo}
                 loading="lazy"
               />
               
               <h2>{show.titulo}</h2>
             </Link>
-          }
-          </>
         ))}
       </div>
     </div>
