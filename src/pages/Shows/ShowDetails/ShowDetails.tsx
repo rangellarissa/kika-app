@@ -29,7 +29,7 @@ const ShowDetails = () => {
 
   return (
     <div className="show-details">
-      <BackButton />
+      <BackButton fallback="/shows" />
       <div className="show-details__header">
         <h1>{show.titulo}</h1>
       </div>
