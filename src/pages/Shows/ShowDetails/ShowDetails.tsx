@@ -34,16 +34,16 @@ const ShowDetails = () => {
         <h1>{show.titulo}</h1>
       </div>
       <div className="show-details__content" key={show.id}>
-        <div className="show-details__content--text">
-          <p>{show.ano}</p>
-          <p>{show.local}</p>
-          <FormattedText text={show.texto} />
-        </div>
         {show.imagem && (
           <div className="show-details__content--image">
             <img src={show.imagem.imageURL} alt={show.titulo} />
           </div>
         )}
+        <div className="show-details__content--text">
+          <p>{show.ano}</p>
+          <p>{show.local}</p>
+          <FormattedText text={show.texto} />
+        </div>
       </div>
     </div>
   );

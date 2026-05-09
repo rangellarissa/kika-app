@@ -1,7 +1,6 @@
 @import '../../../mixins.scss';
 
 .show-details {
-    max-width: 800px;
     margin: 0 100px;
 
     @include mq('tablet', max) {
@@ -10,7 +9,7 @@
 
     &__content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
 
         &--header {
             margin-top: 50px;
@@ -20,7 +19,6 @@
             }
         }
         &--text {
-            flex-direction: column;
             text-align: justify;
 
             @include mq('tablet', max) {
