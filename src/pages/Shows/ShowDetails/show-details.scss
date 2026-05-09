@@ -9,6 +9,9 @@
     }
 
     &__content {
+        display: flex;
+        flex-direction: row;
+
         &--header {
             margin-top: 50px;
 
@@ -17,6 +20,7 @@
             }
         }
         &--text {
+            flex-direction: column;
             text-align: justify;
 
             @include mq('tablet', max) {
