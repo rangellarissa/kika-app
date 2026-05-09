@@ -19,8 +19,11 @@ const BackButton = ({
   }
 
   return (
-    <button className="back-button" onClick={handleBack}>
-      ←
+    <button
+        className="back-button"
+        onClick={handleBack}
+    >
+        <span>←</span>
     </button>
   );
 };
