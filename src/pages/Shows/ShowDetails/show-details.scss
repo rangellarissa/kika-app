@@ -2,7 +2,7 @@
 
 .show-details {
     max-width: 800px;
-    margin: 0 100px;
+    margin: 0 100px 100px 100px;
 
     @include mq('tablet', max) {
         margin: 25px;
