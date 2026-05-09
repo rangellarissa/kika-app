@@ -20,7 +20,7 @@ const BackButton = ({
 
   return (
     <button onClick={handleBack}>
-      Back
+      ←
     </button>
   );
 };
