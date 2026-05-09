@@ -1,0 +1,46 @@
+@import '../../../mixins.scss';
+
+.imageCarousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    max-height: 650px;
+    object-fit: cover;
+    object-position: center;
+
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    
+  }
+
+    img.active {
+        opacity: 1;
+        position: relative;
+    }
+
+  &__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  @include mq('desktop-s', max) {
+
+    img {
+      max-height: 70vh;
+    }
+  }
+
+  @include mq('tablet', max) {
+
+    img {
+      max-height: none;
+      height: auto;
+    }
+  }
+}
