@@ -45,29 +45,26 @@
       height: auto;
       opacity: 0;
       transition: opacity 0.6s ease;
+
+      @media (max-width: 1240px) {
+        width: 600px;
+      }
+
+      @media (max-width: 1020px) {
+        width: 400px;
+      }
+
     }
 
     img.loaded {
       opacity: 1;
     }
 
-    @media (max-width: 1240px) {
-      img {
-        width: 600px;
-      }
-    }
-
-    @media (max-width: 1020px) {
-      img {
-        width: 400px;
-      }
-    }
-
     @include mq('tablet', max) {
       padding: 0;
 
       img {
-        width: 400px;
+        max-width: 85vw;
       }
     }
   }
