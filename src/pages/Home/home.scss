@@ -51,6 +51,18 @@
       opacity: 1;
     }
 
+    @media (max-width: 1240px) {
+      img {
+        width: 600px;
+      }
+    }
+
+    @media (max-width: 1020px) {
+      img {
+        width: 400px;
+      }
+    }
+
     @include mq('tablet', max) {
       padding: 0;
 
