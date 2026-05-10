@@ -53,7 +53,7 @@ const Shows = () => {
                   loading="lazy"
                 />
               }
-              <h2>{show.titulo}</h2>
+              <h2>{show.titulo}, {show.ano}</h2>
             </Link>
         ))}
       </div>
