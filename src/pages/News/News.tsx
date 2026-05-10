@@ -35,7 +35,6 @@ const News = () => {
         <div className="news__content" key={novidade.id}>
           <div className="news__content--header">
             <h2>{novidade.titulo}</h2>
-            <h2>{novidade.titulo}</h2>
           </div>
           <div className="news__content--image">
             <img
