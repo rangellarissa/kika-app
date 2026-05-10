@@ -14,9 +14,10 @@ const News = () => {
     document.title = 'Novidades | Kika Carvalho';
     async function fetchData() {
       const response = await fetch('https://kika-api.vercel.app/api/novidade');
-      const jsonData = await response.json();
 
-      const sortedData = jsonData.sort((a, b) => {
+      const jsonData: Novidade[] = await response.json();
+
+      const sortedData = [...jsonData].sort((a, b) => {
         const [dayA, monthA, yearA] = a.data.split('/');
         const [dayB, monthB, yearB] = b.data.split('/');
 
