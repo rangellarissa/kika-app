@@ -63,6 +63,10 @@
         height: auto;
         display: block;
         object-fit: cover;
+
+        @media (max-width: 550px) {
+          max-width: 85vw;
+        }
       }
 
       p {
