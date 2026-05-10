@@ -21,6 +21,19 @@ const ShowDetails = () => {
       return;
     }
 
+    document.title = `${show.titulo} | Kika Carvalho`;
+
+    const metaDescription = document.querySelector(
+      'meta[name="description"]'
+    );
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        "content",
+        `${show.titulo} — exposição de Kika Carvalho. ${show.local}`
+      );
+    }
+
     async function fetchData() {
 
       try {
