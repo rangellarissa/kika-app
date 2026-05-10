@@ -1,39 +1,114 @@
 @import '../../mixins.scss';
 
 .news {
-    max-width: 800px;
-    margin: 0 100px 100px 100px; 
+  max-width: 900px;
 
-    @include mq('tablet', max) {
-        margin: 20px;
+  margin: 0 auto;
+  padding: 40px 40px 120px;
+
+  @include mq('tablet', max) {
+    padding: 20px 20px 80px;
+  }
+
+  &__header {
+    margin-bottom: 80px;
+
+    h1 {
+      font-size: 48px;
+      font-weight: 400;
+      margin: 0;
+
+      @include mq('tablet', max) {
+        font-size: 36px;
+      }
+    }
+  }
+
+  &__content {
+    margin-bottom: 140px;
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+
+    padding-bottom: 80px;
+
+    &--header {
+      margin-bottom: 40px;
+
+      p {
+        margin: 0 0 12px;
+
+        font-size: 14px;
+        letter-spacing: 0.08em;
+
+        text-transform: uppercase;
+
+        opacity: 0.5;
+      }
+
+      h2 {
+        margin: 0;
+
+        font-size: 42px;
+        line-height: 1.1;
+
+        font-weight: 400;
+
+        @include mq('tablet', max) {
+          font-size: 30px;
+        }
+      }
     }
 
-    &__content {
-        &--header {
-            margin-top: 50px;
+    &--image {
+      margin-bottom: 40px;
 
-            p {
-                margin: 0;
-            }
-        }
-        &--text {
-            text-align: justify;
+      img {
+        width: 100%;
+        height: auto;
 
-            @include mq('tablet', max) {
-                line-height: 28px;
-            }
-        }
-        &--image {
-            img {
-                max-width: 800px;
-                margin: 10px 0;
+        display: block;
 
-                @include mq('tablet', max) {
-                    width: 300px;
-                    height: auto;
-                }    
-            }
-        }
+        object-fit: cover;
+      }
+
+      p {
+        margin-top: 12px;
+
+        font-size: 13px;
+        line-height: 1.5;
+
+        opacity: 0.6;
+      }
     }
 
+    &--text {
+      max-width: 720px;
+
+      text-align: justify;
+
+      line-height: 1.9;
+
+      font-size: 17px;
+
+      @include mq('tablet', max) {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      p {
+        margin-bottom: 24px;
+      }
+
+      a {
+        color: black;
+        text-decoration: underline;
+
+        transition: opacity 0.2s ease;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
 }
