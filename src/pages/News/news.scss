@@ -1,7 +1,7 @@
 @import '../../mixins.scss';
 
 .news {
-  max-width: 900px;
+  max-width: 90vw;
 
   margin: 0 auto;
   padding: 40px 40px 120px;
@@ -11,6 +11,7 @@
   }
 
   &__header {
+    max-width: 800px;
     margin-bottom: 80px;
 
     h1 {
@@ -26,7 +27,7 @@
 
   &__content {
     margin-bottom: 140px;
-
+    max-width: 800px;
     border-bottom: 1px solid rgba(0,0,0,0.08);
 
     padding-bottom: 80px;
@@ -63,26 +64,22 @@
       margin-bottom: 40px;
 
       img {
-        width: 100%;
+        max-width: 800px;
         height: auto;
-
         display: block;
-
         object-fit: cover;
       }
 
       p {
         margin-top: 12px;
-
         font-size: 13px;
         line-height: 1.5;
-
         opacity: 0.6;
       }
     }
 
     &--text {
-      max-width: 720px;
+      max-width: 800px;
 
       text-align: justify;
 
