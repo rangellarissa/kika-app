@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import { Novidade } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
+import FormattedText from '../../components/formattedText/FormattedText';
 
 const News = () => {
 
@@ -30,19 +31,17 @@ const News = () => {
         <h1>Novidades</h1>
       </div>
 
-      {data.map((novidade, index) => (
-        <div className="news__content" key={index}>
+      {data.map((novidade) => (
+        <div className="news__content" key={novidade.id}>
           <div className="news__content--header">
+            <h2>{novidade.titulo}</h2>
             <h2>{novidade.titulo}</h2>
           </div>
           <div className="news__content--image">
-            {novidade.imagens?.map((imagem, imgIndex) => (
-              <img
-                key={imgIndex}
-                src={imagem.imageURL}
-                alt={novidade.titulo}
-              />
-            ))}
+            <img
+              src={novidade.image.imageURL}
+              alt={novidade.titulo}
+            />
           </div>
           <div className="news__content--text">
             <p>{novidade.data}</p>
