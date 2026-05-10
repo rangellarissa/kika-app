@@ -13,17 +13,22 @@ type Props = {
 const ImageCarousel = ({
   images,
   autoPlay = false,
-  interval = 1000,
+  interval = 4000,
 }: Props) => {
 
   const [currentImage, setCurrentImage] = useState(0);
+
+  // reset ao trocar galeria
   useEffect(() => {
     setCurrentImage(0);
-  }, [images]);
+  }, [images.length]);
 
+  // autoplay
   useEffect(() => {
 
-    if (!autoPlay) return;
+    if (!autoPlay || images.length <= 1) {
+      return;
+    }
 
     const timer = setInterval(() => {
 
@@ -43,6 +48,24 @@ const ImageCarousel = ({
     setCurrentImage(index);
   }
 
+  function handlePrevious() {
+
+    setCurrentImage((prev) =>
+      prev === 0
+        ? images.length - 1
+        : prev - 1
+    );
+  }
+
+  function handleNext() {
+
+    setCurrentImage((prev) =>
+      prev === images.length - 1
+        ? 0
+        : prev + 1
+    );
+  }
+
   if (!images.length) {
     return null;
   }
@@ -50,31 +73,53 @@ const ImageCarousel = ({
   return (
     <div className="imageCarousel">
 
-      {images.map((image, index) => (
+      <div className="imageCarousel__images">
 
-        <img
-          key={image}
-          src={image}
-          alt=""
-          className={
-            index === currentImage
-              ? 'active'
-              : ''
-          }
-        />
+        {images.map((image, index) => (
 
-      ))}
-
-      {images.length > 1 && (
-        <div className="imageCarousel__buttons">
-
-          <DotNavigation
-            numDots={images.length}
-            activeIndex={currentImage}
-            onDotClick={handleDotClick}
+          <img
+            key={`${image}-${index}`}
+            src={image}
+            alt=""
+            className={
+              index === currentImage
+                ? 'active'
+                : ''
+            }
           />
 
-        </div>
+        ))}
+
+      </div>
+
+      {images.length > 1 && (
+        <>
+          <button
+            className="imageCarousel__arrow imageCarousel__arrow--left"
+            onClick={handlePrevious}
+            aria-label="Previous image"
+          >
+            ←
+          </button>
+
+          <button
+            className="imageCarousel__arrow imageCarousel__arrow--right"
+            onClick={handleNext}
+            aria-label="Next image"
+          >
+            →
+          </button>
+
+          <div className="imageCarousel__buttons">
+
+            <DotNavigation
+              numDots={images.length}
+              activeIndex={currentImage}
+              onDotClick={handleDotClick}
+            />
+
+          </div>
+        </>
       )}
 
     </div>
