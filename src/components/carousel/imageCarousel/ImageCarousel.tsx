@@ -13,10 +13,13 @@ type Props = {
 const ImageCarousel = ({
   images,
   autoPlay = false,
-  interval = 4000,
+  interval = 1000,
 }: Props) => {
 
   const [currentImage, setCurrentImage] = useState(0);
+  useEffect(() => {
+    setCurrentImage(0);
+  }, [images]);
 
   useEffect(() => {
 
