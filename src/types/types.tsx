@@ -61,6 +61,7 @@ export type Novidade = {
     imagem: Image;
     data: string;
     texto: string;
+    image_label: string;
 }
 
 export type Newsletter = {
