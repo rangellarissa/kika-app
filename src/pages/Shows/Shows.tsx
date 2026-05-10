@@ -49,7 +49,7 @@ const Shows = () => {
               {show.images && 
                 <img
                   src={show.images[0]}
-                  alt={show.titulo}
+                  alt={`exposição ${show.titulo} de Kika Carvalho`}
                   loading="lazy"
                 />
               }
