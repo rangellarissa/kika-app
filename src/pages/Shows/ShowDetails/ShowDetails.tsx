@@ -50,7 +50,7 @@ const ShowDetails = () => {
         key={show.id}
       >
 
-        {!!show.imagens?.length && (
+        {show.imagens?.length && (
           <ImageCarousel
             images={show.imagens}
           />
