@@ -59,6 +59,7 @@ export type Novidade = {
     id: number;
     titulo: string;
     imagem: Image;
+    data: string;
     texto: string;
 }
 

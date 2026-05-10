@@ -19,16 +19,38 @@ const News = () => {
     fetchData();
 }, []);
 
-  // if (data.length === 0) {
-  //   return <p>Em breve...</p>;
-  // }
+  if (data.length === 0) {
+    return <p>Em breve...</p>;
+  }
 
   return (
     <div className="news">
-      <BackButton/>
+      <BackButton />
       <div className="news__header">
-          <h1>Em Construção...</h1>
+        <h1>Novidades</h1>
       </div>
+
+      {data.map((novidade, index) => (
+        <div className="news__content" key={index}>
+          <div className="news__content--header">
+            <h2>{novidade.titulo}</h2>
+          </div>
+          <div className="news__content--image">
+            {novidade.imagens?.map((imagem, imgIndex) => (
+              <img
+                key={imgIndex}
+                src={imagem.imageURL}
+                alt={novidade.titulo}
+              />
+            ))}
+          </div>
+          <div className="news__content--text">
+            <p>{novidade.data}</p>
+            <FormattedText text={novidade.texto} />
+          </div>
+        </div>
+      ))}
+
     </div>
   );
 };

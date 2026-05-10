@@ -8,34 +8,32 @@
         margin: 20px;
     }
 
-    &__header {
-        margin-top: 50px;
-
-        @include mq('tablet', max) {
-            margin-top: 30px;
-        }
-        p {
-            margin: 0;
-        }
-    }
     &__content {
-        .MuiImageList-root {
-            width: 80vw;
+        &--header {
+            margin-top: 50px;
 
-        }
-        .css-1knaqv7-MuiButtonBase-root-MuiButton-root {
-            color:black;
-            text-decoration: underline;
-        }
-
-        img {
-            cursor: pointer;
-
-            @include mq('tablet', max) {
-                max-width: 400px;
+            p {
+                margin: 0;
             }
         }
-        
+        &--text {
+            text-align: justify;
+
+            @include mq('tablet', max) {
+                line-height: 28px;
+            }
+        }
+        &--image {
+            img {
+                max-width: 60vw;
+                margin: 10px 0;
+
+                @include mq('tablet', max) {
+                    width: 300px;
+                    height: auto;
+                }    
+            }
+        }
     }
 
 }
