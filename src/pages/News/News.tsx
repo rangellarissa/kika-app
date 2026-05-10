@@ -68,7 +68,7 @@ const News = () => {
                 aria-label="Compartilhar no WhatsApp"
               >
                 <img
-                  src="/assets/icons/whatsapp.png"
+                  src="/assets/icons/whatsapp.webp"
                   alt="WhatsApp"
                 />
               </a>
