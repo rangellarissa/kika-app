@@ -38,7 +38,7 @@ const News = () => {
           </div>
           <div className="news__content--image">
             <img
-              src={novidade.image.imageURL}
+              src={novidade.imagem.imageURL}
               alt={novidade.titulo}
             />
           </div>
