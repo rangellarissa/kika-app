@@ -49,21 +49,15 @@ const ShowDetails = () => {
         className="show-details__content"
         key={show.id}
       >
-
-        {show.imagens?.length && (
+        {!!show.images?.length && (
           <ImageCarousel
-            images={show.imagens}
+            images={show.images}
           />
         )}
-
         <div className="show-details__content--text">
-
           <p>{show.ano}</p>
-
           <p>{show.local}</p>
-
           <FormattedText text={show.texto} />
-
         </div>
 
       </div>
