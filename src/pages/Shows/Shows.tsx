@@ -25,7 +25,7 @@ const Shows = () => {
   }, [data]);
 
   const validShows = sortedShows.filter(
-    (show) => show.imagens?.length
+    (show) => show.images?.length
   );
 
   if (data.length === 0) {

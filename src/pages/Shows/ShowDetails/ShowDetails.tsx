@@ -17,15 +17,27 @@ const ShowDetails = () => {
 
   useEffect(() => {
 
+    if (!slug) {
+      return;
+    }
+
     async function fetchData() {
 
-      const response = await fetch(
-        `https://kika-api.vercel.app/api/exposicao/by-slug/${slug}`
-      );
+      try {
 
-      const jsonData = await response.json();
+        const response = await fetch(
+          `https://kika-api.vercel.app/api/exposicao/by-slug/${slug}`
+        );
 
-      setShow(jsonData);
+        const jsonData = await response.json();
+
+        setShow(jsonData);
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
     }
 
     fetchData();
@@ -45,10 +57,7 @@ const ShowDetails = () => {
         <h1>{show.titulo}</h1>
       </div>
 
-      <div
-        className="show-details__content"
-        key={show.id}
-      >
+      <div className="show-details__content">
         {!!show.images?.length && (
           <ImageCarousel
             images={show.images}
