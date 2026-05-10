@@ -9,12 +9,12 @@
     height: 12px;
     margin: 0 6px;
     border-radius: 50%;
-    background-color: rgb(19, 40, 162);
+    background-color: rgb(178, 213, 228);
     cursor: pointer;
   }
   
   .dot.active {
-    background-color: white;
+    background-color: rgb(54, 162, 220);
   }
   
   .dot:hover {

@@ -1,11 +1,12 @@
 export type Show = {
     ano: string;
     id: number;
-    imagem?: Image;
+    images?: string[];
     individual: boolean;
     local: string;
     texto: string;
     titulo: string;
+    slug: string;
 };
 
 export type Residency = {
@@ -16,6 +17,7 @@ export type Residency = {
     texto: string;
     titulo: string;
     instituicao: string;
+    slug: string;
 };
 
 export type ResearchProps = {

@@ -1,10 +1,10 @@
 import './shows.scss';
 
 import { useEffect, useState, useMemo } from "react";
+import { Link } from 'react-router-dom';
 
 import { Show } from '../../types/types';
 import BackButton from '../../components/backButton/BackButton';
-import FormattedText from '../../components/formattedText/FormattedText';
 
 const Shows = () => {
 
@@ -24,6 +24,10 @@ const Shows = () => {
     return [...data].sort((a, b) => Number(b.ano) - Number(a.ano));
   }, [data]);
 
+  const validShows = sortedShows.filter(
+    (show) => show.images?.length
+  );
+
   if (data.length === 0) {
     return <p>Loading...</p>;
   }
@@ -35,26 +39,26 @@ const Shows = () => {
         <h1>Exposições</h1>
       </div>
 
-      {sortedShows.map((show) => (
-        <div className="shows__content" key={show.id}>
-          <div className="shows__content--header">
-            <h2>{show.titulo}</h2>
-          </div>
-
-          <div className="shows__content--text">
-            <p>{show.ano}</p>
-            <p>{show.local}</p>
-            <FormattedText text={show.texto} />
-          </div>
-          {show.imagem && (
-            <div className="shows__content--image">
-              <img src={show.imagem.imageURL} alt={show.titulo} />
-            </div>
-          )}
-        </div>
-      ))}
+      <div className="shows__grid">
+        {validShows.map((show) => (
+            <Link
+              key={show.id}
+              to={`/shows/${show.slug}`}
+              className="shows__card"
+            >
+              {show.images && 
+                <img
+                  src={show.images[0]}
+                  alt={show.titulo}
+                  loading="lazy"
+                />
+              }
+              <h2>{show.titulo}, {show.ano}</h2>
+            </Link>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Shows
+export default Shows;

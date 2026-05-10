@@ -1,38 +1,39 @@
 @import '../../mixins.scss';
 
 .shows {
-    max-width: 800px;
-    margin: 0 100px;
+  margin: 0 100px;
 
-    @include mq('tablet', max) {
-        margin: 25px;
-    }
+  @include mq('tablet', max) {
+    margin: 25px;
+  }
 
-    &__content {
-        &--header {
-            margin-top: 50px;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+  }
 
-            p {
-                margin: 0;
-            }
-        }
-        &--text {
-            text-align: justify;
+  &__card {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-            @include mq('tablet', max) {
-                line-height: 28px;
-            }
-        }
-        &--image {
-            img {
-                max-width: 60vw;
-                margin: 10px 0;
+  &__card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
 
-                @include mq('tablet', max) {
-                    width: 300px;
-                    height: auto;
-                }    
-            }
-        }
-    }
+  &__card:hover img {
+    transform: scale(1.02);
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 400;
+  }
 }
