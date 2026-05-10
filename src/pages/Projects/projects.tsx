@@ -64,7 +64,7 @@ const Projects: React.FC = () => {
         <div className="projects">
             <BackButton/>
             <div className="projects__header">
-                <h1>Em Construção...</h1>
+                <h1>Em Construção</h1>
             </div>
             {/* <div className="projects__content">
                 <ImageList variant="masonry" cols={isMobile ? 2 : 3} gap={20}>
