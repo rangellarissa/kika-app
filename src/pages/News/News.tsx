@@ -58,6 +58,47 @@ const News = () => {
           <div className="news__content--header">
             <p>{novidade.data}</p>
             <h2>{novidade.titulo}</h2>
+            <div className="news__share">
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(
+                  `${novidade.titulo} - ${window.location.href}`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Compartilhar no WhatsApp"
+              >
+                <img
+                  src="/assets/icons/whatsapp.png"
+                  alt="WhatsApp"
+                />
+              </a>
+
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                  novidade.titulo
+                )}&url=${encodeURIComponent(window.location.href)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Compartilhar no X"
+              >
+                <img
+                  src="/assets/icons/x.png"
+                  alt="X"
+                />
+              </a>
+
+              <button
+                onClick={() =>
+                  navigator.clipboard.writeText(window.location.href)
+                }
+                aria-label="Copiar link"
+              >
+                <img
+                  src="/assets/icons/link.png"
+                  alt="Copiar link"
+                />
+              </button>
+            </div>
           </div>
           <div className="news__content--image">
             <img
