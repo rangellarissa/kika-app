@@ -51,6 +51,7 @@ export type Obra = {
     tecnica: string;
     disponivel: boolean;
     imagem: Image;
+    image?: number | null;
     dimensoes: string;
     ordem: number;
 }

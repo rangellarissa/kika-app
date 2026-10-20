@@ -25,12 +25,14 @@ import ProtectedRoute from './admin/ProtectedRoute'
 import AdminLayout, { adminTabs } from './admin/AdminLayout'
 import AdminPlaceholder from './admin/AdminPlaceholder'
 import Novidades from './admin/pages/Novidades/Novidades'
+import Obras from './admin/pages/Obras/Obras'
 import Sobre from './admin/pages/Sobre/Sobre'
 
 // Admin tabs that already have a real page; the others still show the placeholder.
 const adminPages: Record<string, ReactElement> = {
     novidades: <Novidades />,
     sobre: <Sobre />,
+    trabalhos: <Obras />,
 }
 
 function App() {
