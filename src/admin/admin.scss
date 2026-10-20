@@ -56,6 +56,7 @@ $admin-gray: #d9d9d9;
 
     &__button {
         border: 0;
+        border-radius: 8px;
         padding: 8px 20px;
         cursor: pointer;
         font-family: 'Signika', sans-serif;
@@ -67,6 +68,89 @@ $admin-gray: #d9d9d9;
 
         &--delete {
             background: $admin-red;
+        }
+    }
+}
+
+.admin {
+    &__section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+
+        h2 {
+            margin: 0;
+            font-weight: 400;
+        }
+    }
+
+    &__error {
+        color: #b3261e;
+    }
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid $admin-gray;
+            vertical-align: middle;
+        }
+
+        th,
+        td {
+            font-family: 'Signika', sans-serif;
+        }
+
+        img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+        }
+    }
+
+    // Keep this a real table cell (no display: flex) so the row lines span the full width.
+    &__table-actions {
+        text-align: right !important;
+        white-space: nowrap;
+        padding-right: 0 !important;
+
+        .admin__button + .admin__button {
+            margin-left: 8px;
+        }
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        label {
+            margin-top: 10px;
+        }
+
+        input,
+        textarea {
+            padding: 8px;
+            border: 1px solid $admin-gray;
+            font: inherit;
+        }
+    }
+
+    &__image-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 10px;
+
+        img {
+            max-width: 240px;
+            max-height: 240px;
+            object-fit: contain;
         }
     }
 }
