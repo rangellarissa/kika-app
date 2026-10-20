@@ -250,3 +250,236 @@ $admin-font: 'Signika', sans-serif;
 .admin__dialog-text {
     font-family: $admin-font !important;
 }
+
+.admin {
+    &__order {
+        white-space: nowrap;
+    }
+
+    &__icon-button {
+        padding: 6px 10px;
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        & + & {
+            margin-left: 4px;
+        }
+    }
+}
+
+// Desktop: text buttons only; the icons and the menu button are for mobile.
+.admin {
+    &__header-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__menu-toggle {
+        display: none;
+        background: none;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+        font-size: 1.5rem;
+    }
+
+    &__action-icon {
+        display: none;
+    }
+
+    &__dialog-form {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        min-height: 0;
+    }
+}
+
+// Mobile layout, following the "mobile" prototype screens.
+@media (max-width: 768px) {
+    .admin {
+        &__header {
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        &__header-actions {
+            gap: 16px;
+        }
+
+        &__logout {
+            font-size: 1.4rem;
+        }
+
+        &__logout-label {
+            display: none;
+        }
+
+        &__menu-toggle {
+            display: inline-flex;
+        }
+
+        // The tab row becomes a menu opened by the hamburger button.
+        &__tabs {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+            margin: 16px 0;
+
+            &--open {
+                display: flex;
+            }
+        }
+
+        &__section-header {
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        // Rows and cards instead of a wide table.
+        &__table {
+            display: block;
+
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: block;
+            }
+
+            tr {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                padding: 8px 0;
+                border-bottom: 1px solid $admin-gray;
+            }
+
+            td {
+                border-bottom: 0;
+                padding: 4px 0;
+            }
+        }
+
+        // Pencil and trash icons instead of text buttons.
+        &__table-actions {
+            display: flex;
+            align-items: center;
+            padding: 0 !important;
+
+            .admin__button {
+                background: none;
+                padding: 8px;
+                font-size: 1.1rem;
+            }
+
+            .admin__button + .admin__button {
+                margin-left: 4px;
+            }
+        }
+
+        &__action-icon {
+            display: inline;
+        }
+
+        &__action-label {
+            display: none;
+        }
+
+        // Novidades: date, truncated title, actions.
+        &__table--novidades {
+            tr {
+                flex-wrap: nowrap;
+                gap: 12px;
+            }
+
+            .admin__cell-image {
+                display: none;
+            }
+
+            .admin__cell-date {
+                flex: 0 0 5.5rem;
+                white-space: nowrap;
+            }
+
+            .admin__cell-title {
+                flex: 1 1 0;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .admin__table-actions {
+                flex: 0 0 auto;
+            }
+        }
+
+        // Trabalhos: one card per obra.
+        &__table--obras {
+            tr {
+                padding: 16px 0;
+            }
+
+            .admin__cell-image {
+                flex: 0 0 100%;
+                order: 1;
+
+                img {
+                    width: 100%;
+                    max-width: 320px;
+                    height: auto;
+                    max-height: 260px;
+                    object-fit: contain;
+                    object-position: left;
+                }
+            }
+
+            .admin__cell-title {
+                flex: 0 0 100%;
+                order: 2;
+                font-size: 1.1rem;
+            }
+
+            .admin__cell-meta {
+                flex: 0 0 100%;
+                order: 3;
+                color: #555;
+                font-size: 0.9rem;
+                padding: 0;
+            }
+
+            .admin__order {
+                flex: 1 1 auto;
+                order: 4;
+            }
+
+            .admin__table-actions {
+                flex: 0 0 auto;
+                order: 5;
+            }
+        }
+
+        // Add/edit forms: full screen, Salvar and Cancelar on top (as in the design).
+        &__dialog-form {
+            .MuiDialogActions-root {
+                order: -1;
+                flex-direction: row-reverse;
+                justify-content: flex-start;
+                padding: 16px 24px 0;
+            }
+
+            .MuiDialogActions-root > :not(style) ~ :not(style) {
+                margin-left: 0;
+                margin-right: 8px;
+            }
+        }
+    }
+}

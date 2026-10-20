@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
+import { Dialog, DialogActions, DialogContent, DialogTitle, useMediaQuery } from '@mui/material'
 import { FormEvent, useState } from 'react'
 
 import { Novidade } from '../../../types/types'
@@ -21,6 +21,7 @@ type NovidadeFormProps = {
 }
 
 const NovidadeForm = ({ novidade, onSubmit, onClose }: NovidadeFormProps) => {
+    const fullScreen = useMediaQuery('(max-width:768px)')
     const [titulo, setTitulo] = useState(novidade?.titulo ?? '')
     const [data, setData] = useState(novidade ? toInputDate(novidade.data) : '')
     const [texto, setTexto] = useState(novidade?.texto ?? '')
@@ -55,13 +56,14 @@ const NovidadeForm = ({ novidade, onSubmit, onClose }: NovidadeFormProps) => {
     return (
         <Dialog
             open
+            fullScreen={fullScreen}
             onClose={saving ? undefined : onClose}
             fullWidth
             maxWidth="md"
             aria-label={novidade ? 'Editar novidade' : 'Nova novidade'}
         >
             {!novidade && <DialogTitle className="admin__dialog-title">Nova novidade</DialogTitle>}
-            <form onSubmit={handleSubmit} noValidate>
+            <form className="admin__dialog-form" onSubmit={handleSubmit} noValidate>
                 <DialogContent className="admin__form">
                     <label htmlFor="titulo">Título</label>
                     <input id="titulo" value={titulo} onChange={(e) => setTitulo(e.target.value)} />

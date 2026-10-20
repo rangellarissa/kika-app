@@ -1,3 +1,4 @@
+import { FaPen, FaTrash } from 'react-icons/fa'
 import { useCallback, useEffect, useState } from 'react'
 
 import ConfirmDialog from '../../components/ConfirmDialog'
@@ -101,7 +102,7 @@ const Novidades = () => {
             {!loading && !loadError && items.length === 0 && <p>Nenhuma novidade ainda.</p>}
 
             {items.length > 0 && (
-                <table className="admin__table">
+                <table className="admin__table admin__table--novidades">
                     <thead>
                         <tr>
                             <th>Imagem</th>
@@ -113,13 +114,21 @@ const Novidades = () => {
                     <tbody>
                         {items.map((item) => (
                             <tr key={item.id}>
-                                <td>{item.imagem?.imageURL && <img src={item.imagem.imageURL} alt="" loading="lazy" />}</td>
-                                <td>{item.data}</td>
-                                <td>{item.titulo}</td>
+                                <td className="admin__cell-image">{item.imagem?.imageURL && <img src={item.imagem.imageURL} alt="" loading="lazy" />}</td>
+                                <td className="admin__cell-date">{item.data}</td>
+                                <td className="admin__cell-title">{item.titulo}</td>
                                 <td className="admin__table-actions">
-                                    <button className="admin__button" onClick={() => setEditing(item)}>Editar</button>
-                                    <button className="admin__button admin__button--delete" onClick={() => setDeleting(item)}>
-                                        Excluir
+                                    <button className="admin__button" aria-label={`Editar ${item.titulo}`} onClick={() => setEditing(item)}>
+                                        <FaPen className="admin__action-icon" aria-hidden />
+                                        <span className="admin__action-label">Editar</span>
+                                    </button>
+                                    <button
+                                        className="admin__button admin__button--delete"
+                                        aria-label={`Excluir ${item.titulo}`}
+                                        onClick={() => setDeleting(item)}
+                                    >
+                                        <FaTrash className="admin__action-icon" aria-hidden />
+                                        <span className="admin__action-label">Excluir</span>
                                     </button>
                                 </td>
                             </tr>
