@@ -2,9 +2,9 @@ import './admin.scss'
 
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 
-import { FaUser } from 'react-icons/fa'
+import { FaBars, FaUser } from 'react-icons/fa'
 import { useAuth } from './AuthContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export const adminTabs = [
     { path: 'inicio', label: 'início' },
@@ -20,6 +20,7 @@ export const adminTabs = [
 const AdminLayout = () => {
     const { signOut } = useAuth()
     const navigateTo = useNavigate()
+    const [menuOpen, setMenuOpen] = useState(false)
 
     useEffect(() => {
         document.title = 'Gestão de Conteúdo | Kika Carvalho'
@@ -34,17 +35,29 @@ const AdminLayout = () => {
         <div className="admin">
             <header className="admin__header">
                 <h1>Gestão de Conteúdo</h1>
-                <button className="admin__logout" onClick={handleSignOut}>
-                    <span>Sair</span>
-                    <FaUser aria-hidden />
-                </button>
+                <div className="admin__header-actions">
+                    <button className="admin__logout" aria-label="Sair" onClick={handleSignOut}>
+                        <span className="admin__logout-label">Sair</span>
+                        <FaUser aria-hidden />
+                    </button>
+                    <button
+                        className="admin__menu-toggle"
+                        aria-label="Menu"
+                        aria-expanded={menuOpen}
+                        aria-controls="admin-tabs"
+                        onClick={() => setMenuOpen((open) => !open)}
+                    >
+                        <FaBars aria-hidden />
+                    </button>
+                </div>
             </header>
 
-            <nav className="admin__tabs">
+            <nav id="admin-tabs" className={`admin__tabs${menuOpen ? ' admin__tabs--open' : ''}`}>
                 {adminTabs.map((tab) => (
                     <NavLink
                         key={tab.path}
                         to={tab.path}
+                        onClick={() => setMenuOpen(false)}
                         className={({ isActive }) => (isActive ? 'admin__tab admin__tab--active' : 'admin__tab')}
                     >
                         {tab.label}
