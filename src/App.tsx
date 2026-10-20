@@ -1,5 +1,7 @@
 import './App.scss'
 
+import { ReactElement } from 'react'
+
 import {
     Navigate,
     Route,
@@ -22,6 +24,12 @@ import { AuthProvider } from './admin/AuthContext'
 import ProtectedRoute from './admin/ProtectedRoute'
 import AdminLayout, { adminTabs } from './admin/AdminLayout'
 import AdminPlaceholder from './admin/AdminPlaceholder'
+import Novidades from './admin/pages/Novidades/Novidades'
+
+// Admin tabs that already have a real page; the others still show the placeholder.
+const adminPages: Record<string, ReactElement> = {
+    novidades: <Novidades />,
+}
 
 function App() {
 
@@ -45,7 +53,7 @@ function App() {
                         <Route element={<AdminLayout />}>
                             <Route index element={<Navigate to="inicio" replace />} />
                             {adminTabs.map((tab) => (
-                                <Route key={tab.path} path={tab.path} element={<AdminPlaceholder title={tab.label} />} />
+                                <Route key={tab.path} path={tab.path} element={adminPages[tab.path] ?? <AdminPlaceholder title={tab.label} />} />
                             ))}
                         </Route>
                     </Route>

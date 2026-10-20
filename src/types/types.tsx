@@ -59,6 +59,7 @@ export type Novidade = {
     id: number;
     titulo: string;
     imagem: Image;
+    image?: number | null;
     data: string;
     texto: string;
     image_label: string;
