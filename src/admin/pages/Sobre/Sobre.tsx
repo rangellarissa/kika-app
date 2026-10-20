@@ -1,6 +1,7 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
 
 import { Artist } from '../../../types/types'
+import RichTextEditor from '../../components/RichTextEditor'
 import Toast, { ToastState } from '../../components/Toast'
 import { apiFetch } from '../../../lib/api'
 import { toDisplayMonth, toInputMonth } from '../../../lib/date'
@@ -12,7 +13,6 @@ const errorMessage = (e: unknown) => (e instanceof Error ? e.message : 'Algo deu
 
 const Sobre = () => {
     const [saved, setSaved] = useState<Artist | null>(null)
-    const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [month, setMonth] = useState('')
     const [loading, setLoading] = useState(true)
@@ -23,7 +23,6 @@ const Sobre = () => {
 
     const fill = (artist: Artist) => {
         setSaved(artist)
-        setName(artist.name ?? '')
         setDescription(artist.description ?? '')
         setMonth(toInputMonth(artist.date ?? ''))
     }
@@ -45,15 +44,13 @@ const Sobre = () => {
 
     const dirty =
         !!saved &&
-        (name !== (saved.name ?? '') ||
-            description !== (saved.description ?? '') ||
-            month !== toInputMonth(saved.date ?? ''))
+        (description !== (saved.description ?? '') || month !== toInputMonth(saved.date ?? ''))
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
 
-        if (!name.trim() || !description.trim()) {
-            setError('Preencha nome e texto.')
+        if (!description.trim()) {
+            setError('Preencha o texto.')
             return
         }
 
@@ -62,7 +59,8 @@ const Sobre = () => {
         try {
             const updated = await apiFetch<Artist>(`/api/artista/${ARTIST_ID}`, {
                 method: 'PUT',
-                body: JSON.stringify({ name: name.trim(), description, date: toDisplayMonth(month) }),
+                // The artist name never changes, so it is not sent.
+                body: JSON.stringify({ description, date: toDisplayMonth(month) }),
             })
             fill(updated)
             setToast({ message: 'Sobre atualizado.', severity: 'success' })
@@ -88,12 +86,7 @@ const Sobre = () => {
 
             {saved && (
                 <form className="admin__form admin__form--page" onSubmit={handleSubmit} noValidate>
-                    <label htmlFor="name">Nome</label>
-                    <input id="name" value={name} onChange={(e) => setName(e.target.value)} />
-
-                    <label htmlFor="description">Texto</label>
-                    <textarea id="description" rows={18} value={description} onChange={(e) => setDescription(e.target.value)} />
-                    <small>Use **negrito**, *itálico* e [texto](link). Linha em branco separa parágrafos.</small>
+                    <RichTextEditor label="Texto" initialValue={saved.description ?? ''} onChange={setDescription} />
 
                     <label htmlFor="month">Atualizado em</label>
                     <input id="month" type="month" value={month} onChange={(e) => setMonth(e.target.value)} />

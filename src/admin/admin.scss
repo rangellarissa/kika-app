@@ -2,6 +2,10 @@ $admin-green: #a8cfa0;
 $admin-red: #f98f8f;
 $admin-gray: #d9d9d9;
 
+// Oswald (the app-wide default for h1/h2/span) is only for the header and the tab title.
+// Everything else in the admin - forms, editor, dialogs, tables - uses Signika.
+$admin-font: 'Signika', sans-serif;
+
 .admin {
     padding: 30px 40px;
 
@@ -38,7 +42,7 @@ $admin-gray: #d9d9d9;
     }
 
     &__tab {
-        font-family: 'Signika', sans-serif;
+        font-family: $admin-font;
         font-size: 1.2rem;
         color: #000;
         text-decoration: none;
@@ -59,7 +63,7 @@ $admin-gray: #d9d9d9;
         border-radius: 8px;
         padding: 8px 20px;
         cursor: pointer;
-        font-family: 'Signika', sans-serif;
+        font-family: $admin-font;
         background: $admin-gray;
 
         &--save {
@@ -103,7 +107,7 @@ $admin-gray: #d9d9d9;
 
         th,
         td {
-            font-family: 'Signika', sans-serif;
+            font-family: $admin-font;
         }
 
         img {
@@ -128,6 +132,7 @@ $admin-gray: #d9d9d9;
         display: flex;
         flex-direction: column;
         gap: 6px;
+        font-family: $admin-font;
 
         label {
             margin-top: 10px;
@@ -137,11 +142,13 @@ $admin-gray: #d9d9d9;
         textarea {
             padding: 8px;
             border: 1px solid $admin-gray;
+            border-radius: 8px;
             font: inherit;
         }
     }
 
     &__image-field {
+        font-family: $admin-font;
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -165,4 +172,81 @@ $admin-gray: #d9d9d9;
         justify-content: flex-end;
         margin-top: 16px;
     }
+}
+
+.rich-editor {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    font-family: $admin-font;
+
+    &__label {
+        margin-bottom: 6px;
+        font-family: $admin-font;
+    }
+
+    &__toolbar {
+        display: flex;
+        gap: 6px;
+        padding: 6px;
+        border: 1px solid $admin-gray;
+        border-bottom: 0;
+        border-radius: 8px 8px 0 0;
+        background: #f7f7f7;
+    }
+
+    &__tool {
+        min-width: 36px;
+        height: 32px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        cursor: pointer;
+        font-family: $admin-font;
+        font-size: 1rem;
+
+        &:hover:not(:disabled) {
+            background: $admin-gray;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        &--active {
+            background: $admin-gray;
+        }
+    }
+
+    .ProseMirror {
+        min-height: 220px;
+        padding: 10px;
+        border: 1px solid $admin-gray;
+        border-radius: 0 0 8px 8px;
+        font-family: $admin-font;
+        line-height: 1.5;
+
+        &:focus {
+            outline: 2px solid #8ab4f8;
+            outline-offset: -1px;
+        }
+
+        p {
+            margin: 0 0 1em;
+        }
+
+        a {
+            color: #1a5fb4;
+            text-decoration: underline;
+            cursor: text;
+        }
+    }
+}
+
+// MUI dialog parts render in a portal and carry their own Roboto/h2 styles.
+.admin__dialog-title,
+.admin__dialog-text {
+    font-family: $admin-font !important;
 }

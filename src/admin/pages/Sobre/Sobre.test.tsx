@@ -4,6 +4,7 @@ import Sobre from './Sobre'
 import { apiFetch } from '../../../lib/api'
 
 jest.mock('../../../lib/api', () => ({ apiFetch: jest.fn() }))
+jest.mock('../../components/RichTextEditor')
 
 const api = apiFetch as jest.Mock
 const artist = { id: 1, name: 'KIKA CARVALHO', description: 'Texto original', date: '03/2026' }
@@ -13,13 +14,13 @@ beforeEach(() => {
   api.mockResolvedValue(artist)
 })
 
-const waitForForm = () => screen.findByLabelText('Nome')
+const waitForForm = () => screen.findByLabelText('Texto')
 
-test('loads the artist into the form', async () => {
+test('loads the text and month into the form, with no name field', async () => {
   render(<Sobre />)
 
-  expect(await waitForForm()).toHaveValue('KIKA CARVALHO')
-  expect(screen.getByLabelText('Texto')).toHaveValue('Texto original')
+  expect(await waitForForm()).toHaveValue('Texto original')
+  expect(screen.queryByLabelText('Nome')).not.toBeInTheDocument()
   expect(screen.getByLabelText('Atualizado em')).toHaveValue('2026-03')
   expect(api).toHaveBeenCalledWith('/api/artista/1', { cache: 'no-store' })
 })
@@ -30,7 +31,7 @@ test('shows an error and lets the user retry when loading fails', async () => {
 
   expect(await screen.findByRole('alert')).toHaveTextContent('Sem conexão')
   fireEvent.click(screen.getByText('Tentar de novo'))
-  expect(await waitForForm()).toHaveValue('KIKA CARVALHO')
+  expect(await waitForForm()).toHaveValue('Texto original')
 })
 
 test('Salvar is disabled until something changes', async () => {
@@ -46,23 +47,22 @@ test('Salvar is disabled until something changes', async () => {
   expect(save).toBeDisabled()
 })
 
-test('requires name and text', async () => {
+test('requires the text', async () => {
   render(<Sobre />)
   await waitForForm()
 
-  fireEvent.change(screen.getByLabelText('Nome'), { target: { value: '   ' } })
+  fireEvent.change(screen.getByLabelText('Texto'), { target: { value: '   ' } })
   fireEvent.click(screen.getByText('Salvar'))
 
-  expect(await screen.findByRole('alert')).toHaveTextContent('Preencha nome e texto.')
+  expect(await screen.findByRole('alert')).toHaveTextContent('Preencha o texto.')
   expect(api).toHaveBeenCalledTimes(1)
 })
 
-test('saves with PUT, converts the month back to mm/yyyy and confirms', async () => {
+test('saves with PUT without the name, converts the month back to mm/yyyy and confirms', async () => {
   render(<Sobre />)
   await waitForForm()
-  api.mockResolvedValueOnce({ ...artist, name: 'Kika', description: 'Novo texto', date: '10/2026' })
+  api.mockResolvedValueOnce({ ...artist, description: 'Novo texto', date: '10/2026' })
 
-  fireEvent.change(screen.getByLabelText('Nome'), { target: { value: '  Kika ' } })
   fireEvent.change(screen.getByLabelText('Texto'), { target: { value: 'Novo texto' } })
   fireEvent.change(screen.getByLabelText('Atualizado em'), { target: { value: '2026-10' } })
   fireEvent.click(screen.getByText('Salvar'))
@@ -71,7 +71,7 @@ test('saves with PUT, converts the month back to mm/yyyy and confirms', async ()
   const [path, options] = api.mock.calls[1]
   expect(path).toBe('/api/artista/1')
   expect(options.method).toBe('PUT')
-  expect(JSON.parse(options.body)).toEqual({ name: 'Kika', description: 'Novo texto', date: '10/2026' })
+  expect(JSON.parse(options.body)).toEqual({ description: 'Novo texto', date: '10/2026' })
   expect(await screen.findByText('Sobre atualizado.')).toBeInTheDocument()
   expect(screen.getByText('Salvar')).toBeDisabled()
 })
