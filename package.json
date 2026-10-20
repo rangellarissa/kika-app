@@ -16,7 +16,8 @@
       "./setupTests.ts"
     ],
     "moduleNameMapper": {
-      "\\.(css|scss)$": "identity-obj-proxy"
+      "\\.(css|scss)$": "identity-obj-proxy",
+      "^(\\./|(\\.\\./)+lib/)env$": "<rootDir>/src/__mocks__/env.ts"
     },
     "testEnvironment": "jsdom"
   },
@@ -28,11 +29,11 @@
     "@fontsource/roboto": "^5.0.5",
     "@mui/icons-material": "^5.14.3",
     "@mui/material": "^5.14.2",
+    "@supabase/supabase-js": "^2.118.0",
     "@types/node": "^18.16.1",
     "@vercel/analytics": "^1.0.0",
     "bootstrap": "^5.3.1",
     "jest-environment-jsdom": "^29.6.2",
-    "jest-styled-components": "^7.1.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "node": "^20.19.5",
