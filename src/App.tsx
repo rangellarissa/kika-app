@@ -1,6 +1,7 @@
 import './App.scss'
 
 import {
+    Navigate,
     Route,
     BrowserRouter as Router,
     Routes
@@ -16,12 +17,18 @@ import Residencies from './pages/Residencies/Residencies'
 import Research from './pages/Research/Research'
 import Projects from './pages/Projects/projects'
 import ShowDetails from './pages/Shows/ShowDetails/ShowDetails'
+import Login from './pages/Login/Login'
+import { AuthProvider } from './admin/AuthContext'
+import ProtectedRoute from './admin/ProtectedRoute'
+import AdminLayout, { adminTabs } from './admin/AdminLayout'
+import AdminPlaceholder from './admin/AdminPlaceholder'
 
 function App() {
 
     return (
         <div className="App">
             <Router>
+                <AuthProvider>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/shows" element={<Shows />} />
@@ -33,7 +40,17 @@ function App() {
                     <Route path="/special-projects" element={<Projects />} />
                     <Route path="/news" element={<News />} />
                     <Route path="/message" element={<Message />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/admin" element={<ProtectedRoute />}>
+                        <Route element={<AdminLayout />}>
+                            <Route index element={<Navigate to="inicio" replace />} />
+                            {adminTabs.map((tab) => (
+                                <Route key={tab.path} path={tab.path} element={<AdminPlaceholder title={tab.label} />} />
+                            ))}
+                        </Route>
+                    </Route>
                 </Routes>
+                </AuthProvider>
 
             </Router>
 
