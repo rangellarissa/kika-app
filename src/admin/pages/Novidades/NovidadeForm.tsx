@@ -3,6 +3,7 @@ import { FormEvent, useState } from 'react'
 
 import { Novidade } from '../../../types/types'
 import ImageField from '../../components/ImageField'
+import RichTextEditor from '../../components/RichTextEditor'
 import { toInputDate } from '../../../lib/date'
 
 export type NovidadeValues = {
@@ -59,7 +60,7 @@ const NovidadeForm = ({ novidade, onSubmit, onClose }: NovidadeFormProps) => {
             maxWidth="md"
             aria-label={novidade ? 'Editar novidade' : 'Nova novidade'}
         >
-            {!novidade && <DialogTitle>Nova novidade</DialogTitle>}
+            {!novidade && <DialogTitle className="admin__dialog-title">Nova novidade</DialogTitle>}
             <form onSubmit={handleSubmit} noValidate>
                 <DialogContent className="admin__form">
                     <label htmlFor="titulo">Título</label>
@@ -68,9 +69,7 @@ const NovidadeForm = ({ novidade, onSubmit, onClose }: NovidadeFormProps) => {
                     <label htmlFor="data">Data</label>
                     <input id="data" type="date" value={data} onChange={(e) => setData(e.target.value)} />
 
-                    <label htmlFor="texto">Texto</label>
-                    <textarea id="texto" rows={10} value={texto} onChange={(e) => setTexto(e.target.value)} />
-                    <small>Use **negrito**, *itálico* e [texto](link). Linha em branco separa parágrafos.</small>
+                    <RichTextEditor label="Texto" initialValue={novidade?.texto ?? ''} onChange={setTexto} />
 
                     <ImageField currentUrl={novidade?.imagem?.imageURL} file={file} onChange={setFile} onError={setError} />
 

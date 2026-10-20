@@ -5,6 +5,7 @@ import { apiFetch } from '../../../lib/api'
 import { uploadImage } from '../../../lib/upload'
 
 jest.mock('../../../lib/api', () => ({ apiFetch: jest.fn() }))
+jest.mock('../../components/RichTextEditor')
 jest.mock('../../../lib/upload', () => ({
   ...jest.requireActual('../../../lib/upload'),
   uploadImage: jest.fn(),

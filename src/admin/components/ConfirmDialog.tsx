@@ -12,9 +12,9 @@ type ConfirmDialogProps = {
 
 const ConfirmDialog = ({ open, title, message, confirmLabel = 'Excluir', busy, onConfirm, onCancel }: ConfirmDialogProps) => (
     <Dialog open={open} onClose={busy ? undefined : onCancel}>
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle className="admin__dialog-title">{title}</DialogTitle>
         <DialogContent>
-            <DialogContentText>{message}</DialogContentText>
+            <DialogContentText className="admin__dialog-text">{message}</DialogContentText>
         </DialogContent>
         <DialogActions>
             <button className="admin__button" onClick={onCancel} disabled={busy}>Cancelar</button>

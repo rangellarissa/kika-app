@@ -2,8 +2,9 @@ type FormattedTextProps = {
   text?: string;
 };
 
-const parseInlineFormatting = (text: string) => {
-  let formatted = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+export const parseInlineFormatting = (text: string) => {
+  let formatted = text.replace(/\*\*\*(.*?)\*\*\*/g, "<strong><em>$1</em></strong>");
+  formatted = formatted.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   formatted = formatted.replace(/\*(.*?)\*/g, "<em>$1</em>");
   formatted = formatted.replace(
     /\[(.*?)\]\((.*?)\)/g,

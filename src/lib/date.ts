@@ -11,3 +11,14 @@ export const toDisplayDate = (input: string): string => {
 
 // Timestamp used to sort dd/mm/yyyy dates; NaN when the text is not a valid date.
 export const displayDateValue = (display: string): number => new Date(toInputDate(display)).getTime()
+
+// artista.date is stored as mm/yyyy text; <input type="month"> uses yyyy-mm.
+export const toInputMonth = (display: string): string => {
+    const [month, year] = display.split('/')
+    return month && year ? `${year}-${month}` : ''
+}
+
+export const toDisplayMonth = (input: string): string => {
+    const [year, month] = input.split('-')
+    return month && year ? `${month}/${year}` : ''
+}
