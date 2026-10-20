@@ -154,3 +154,15 @@ $admin-gray: #d9d9d9;
         }
     }
 }
+
+.admin {
+    &__form--page {
+        max-width: 800px;
+    }
+
+    &__form-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 16px;
+    }
+}
