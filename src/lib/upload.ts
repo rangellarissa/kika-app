@@ -2,6 +2,8 @@ import { apiFetch } from './api'
 import { supabase } from './supabase'
 
 const BUCKET = 'kika-app'
+// Uploaded paths are unique (timestamped), so browsers and the CDN can cache them for a year.
+const CACHE_CONTROL = '31536000'
 
 export const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 // Limit for the file the user picks; it is shrunk before upload.
@@ -63,7 +65,7 @@ export async function uploadImage(original: File, legenda?: string): Promise<Upl
         body: JSON.stringify({ filename: file.name }),
     })
 
-    const { error } = await supabase.storage.from(BUCKET).uploadToSignedUrl(path, token, file)
+    const { error } = await supabase.storage.from(BUCKET).uploadToSignedUrl(path, token, file, { cacheControl: CACHE_CONTROL })
     if (error) throw new Error(error.message)
 
     // The API returns the inserted rows as an array.
