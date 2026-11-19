@@ -19,19 +19,26 @@ type PesquisaFormProps = {
     onClose: () => void
 }
 
+type Fields = Omit<PesquisaValues, 'file'>
+
 const PesquisaForm = ({ pesquisa, onSubmit, onClose }: PesquisaFormProps) => {
     const fullScreen = useMediaQuery('(max-width:768px)')
-    const [titulo, setTitulo] = useState(pesquisa?.titulo ?? '')
-    const [autora, setAutora] = useState(pesquisa?.autora ?? '')
-    const [data, setData] = useState(pesquisa?.data ?? '')
-    const [texto, setTexto] = useState(pesquisa?.texto ?? '')
+    const [fields, setFields] = useState<Fields>({
+        titulo: pesquisa?.titulo ?? '',
+        autora: pesquisa?.autora ?? '',
+        data: pesquisa?.data ?? '',
+        texto: pesquisa?.texto ?? '',
+    })
     const [file, setFile] = useState<File | null>(null)
     const [error, setError] = useState<string | null>(null)
     const [saving, setSaving] = useState(false)
 
+    const setField = (name: keyof Fields, value: string) => setFields((current) => ({ ...current, [name]: value }))
+
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault()
 
+        const { titulo, autora, data, texto } = fields
         if (!titulo.trim() || !autora.trim() || !data || !texto.trim()) {
             setError('Preencha título, autora, data e texto.')
             return
@@ -65,15 +72,15 @@ const PesquisaForm = ({ pesquisa, onSubmit, onClose }: PesquisaFormProps) => {
             <form className="admin__dialog-form" onSubmit={handleSubmit} noValidate>
                 <DialogContent className="admin__form">
                     <label htmlFor="titulo">Título</label>
-                    <input id="titulo" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+                    <input id="titulo" value={fields.titulo} onChange={(e) => setField('titulo', e.target.value)} />
 
                     <label htmlFor="autora">Autora</label>
-                    <input id="autora" value={autora} onChange={(e) => setAutora(e.target.value)} />
+                    <input id="autora" value={fields.autora} onChange={(e) => setField('autora', e.target.value)} />
 
                     <label htmlFor="data">Data</label>
-                    <input id="data" type="date" value={data} onChange={(e) => setData(e.target.value)} />
+                    <input id="data" type="date" value={fields.data} onChange={(e) => setField('data', e.target.value)} />
 
-                    <RichTextEditor label="Texto" initialValue={pesquisa?.texto ?? ''} onChange={setTexto} />
+                    <RichTextEditor label="Texto" initialValue={pesquisa?.texto ?? ''} onChange={(value) => setField('texto', value)} />
 
                     <ImageField currentUrl={pesquisa?.imagem?.imageURL} file={file} onChange={setFile} onError={setError} />
 
