@@ -128,7 +128,7 @@ describe('uploadImage', () => {
 
     expect(result).toEqual({ id: 9, imageURL: 'http://x/p.webp' })
     expect(supabase.storage.from).toHaveBeenCalledWith('kika-app')
-    expect(uploadToSignedUrl).toHaveBeenCalledWith('p.webp', 't', f)
+    expect(uploadToSignedUrl).toHaveBeenCalledWith('p.webp', 't', f, { cacheControl: '31536000' })
     const [firstPath, firstOptions] = (apiFetch as jest.Mock).mock.calls[0]
     expect(firstPath).toBe('/api/upload-url')
     expect(JSON.parse(firstOptions.body)).toEqual({ filename: 'foto.webp' })
