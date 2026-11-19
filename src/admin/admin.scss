@@ -422,6 +422,36 @@ $admin-font: 'Signika', sans-serif;
             }
         }
 
+        // Pesquisa: like Novidades on mobile (date, truncated title, actions).
+        &__table--pesquisa {
+            tr {
+                flex-wrap: nowrap;
+                gap: 12px;
+            }
+
+            .admin__cell-image,
+            .admin__cell-meta {
+                display: none;
+            }
+
+            .admin__cell-date {
+                flex: 0 0 5.5rem;
+                white-space: nowrap;
+            }
+
+            .admin__cell-title {
+                flex: 1 1 0;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .admin__table-actions {
+                flex: 0 0 auto;
+            }
+        }
+
         // Trabalhos: one card per obra.
         &__table--obras {
             tr {
